@@ -34,10 +34,10 @@ namespace MCPForUnity.Editor.Services.Transport.Transports
     {
         private static TcpListener listener;
         private static bool isRunning = false;
-        private static readonly object lockObj = new();
-        private static readonly object startStopLock = new();
-        private static readonly object clientsLock = new();
-        private static readonly HashSet<TcpClient> activeClients = new();
+        private static readonly object lockObj = new object();
+        private static readonly object startStopLock = new object();
+        private static readonly object clientsLock = new object();
+        private static readonly HashSet<TcpClient> activeClients = new HashSet<TcpClient>();
         private static CancellationTokenSource cts;
         private static Task listenerTask;
         private static int processingCommands = 0;
@@ -47,7 +47,7 @@ namespace MCPForUnity.Editor.Services.Transport.Transports
         private static double nextStartAt = 0.0f;
         private static double nextHeartbeatAt = 0.0f;
         private static int heartbeatSeq = 0;
-        private static Dictionary<string, QueuedCommand> commandQueue = new();
+        private static Dictionary<string, QueuedCommand> commandQueue = new Dictionary<string, QueuedCommand>();
         private static int mainThreadId;
         private static int currentUnityPort = 6400;
         private static bool isAutoConnectMode = false;

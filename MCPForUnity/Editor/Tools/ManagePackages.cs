@@ -19,11 +19,11 @@ namespace MCPForUnity.Editor.Tools
     public static class ManagePackages
     {
         // Pending async requests keyed by job ID
-        private static readonly Dictionary<string, Request> PendingRequests = new();
+        private static readonly Dictionary<string, Request> PendingRequests = new Dictionary<string, Request>();
 
         // Pending list/search requests keyed by job ID
-        private static readonly Dictionary<string, ListRequest> PendingListRequests = new();
-        private static readonly Dictionary<string, SearchRequest> PendingSearchRequests = new();
+        private static readonly Dictionary<string, ListRequest> PendingListRequests = new Dictionary<string, ListRequest>();
+        private static readonly Dictionary<string, SearchRequest> PendingSearchRequests = new Dictionary<string, SearchRequest>();
 
         public static object HandleCommand(JObject @params)
         {

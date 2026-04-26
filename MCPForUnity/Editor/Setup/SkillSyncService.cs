@@ -808,9 +808,9 @@ namespace MCPForUnity.Editor.Setup
 
         internal sealed class SyncPlan
         {
-            public List<string> Added { get; } = new();
-            public List<string> Updated { get; } = new();
-            public List<string> Deleted { get; } = new();
+            public List<string> Added { get; } = new List<string>();
+            public List<string> Updated { get; } = new List<string>();
+            public List<string> Deleted { get; } = new List<string>();
         }
     }
 }

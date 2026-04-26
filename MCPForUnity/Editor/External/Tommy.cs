@@ -1881,7 +1881,7 @@ namespace MCPForUnity.External.Tommy
         /**
          * A helper dictionary to map TOML base codes into the radii.
          */
-        public static readonly Dictionary<string, int> IntegerBases = new()
+        public static readonly Dictionary<string, int> IntegerBases = new Dictionary<string, int>
         {
             ["x"] = 16,
             ["o"] = 8,
@@ -1891,7 +1891,7 @@ namespace MCPForUnity.External.Tommy
         /**
          * A helper dictionary to map non-decimal bases to their TOML identifiers
          */
-        public static readonly Dictionary<int, string> BaseIdentifiers = new()
+        public static readonly Dictionary<int, string> BaseIdentifiers = new Dictionary<int, string>
         {
             [2] = "b",
             [8] = "o",

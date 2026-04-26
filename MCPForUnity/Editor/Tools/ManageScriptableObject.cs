@@ -27,7 +27,7 @@ namespace MCPForUnity.Editor.Tools
         private const string CodeTargetNotFound = "target_not_found";
         private const string CodeAssetCreateFailed = "asset_create_failed";
 
-        private static readonly HashSet<string> ValidActions = new(StringComparer.OrdinalIgnoreCase)
+        private static readonly HashSet<string> ValidActions = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
             // NOTE: Action strings are normalized by NormalizeAction() (lowercased, '_'/'-' removed),
             // so we only need the canonical normalized forms here.
@@ -222,7 +222,7 @@ namespace MCPForUnity.Editor.Tools
                 return new ErrorResponse(CodeInvalidParams, new { message = "'patches' is required.", targetPath, targetGuid });
             }
 
-            if (patchesToken is not JArray patches)
+            if (!(patchesToken is JArray patches))
             {
                 return new ErrorResponse(CodeInvalidParams, new { message = "'patches' must be an array.", targetPath, targetGuid });
             }
@@ -274,7 +274,7 @@ namespace MCPForUnity.Editor.Tools
 
             for (int i = 0; i < patches.Count; i++)
             {
-                if (patches[i] is not JObject patchObj)
+                if (!(patches[i] is JObject patchObj))
                 {
                     results.Add(new { index = i, propertyPath = "", op = "", ok = false, message = $"Patch at index {i} must be an object." });
                     continue;
@@ -449,7 +449,7 @@ namespace MCPForUnity.Editor.Tools
 
             for (int i = 0; i < patches.Count; i++)
             {
-                if (patches[i] is not JObject patchObj)
+                if (!(patches[i] is JObject patchObj))
                 {
                     results.Add(new { propertyPath = "", op = "", ok = false, message = $"Patch at index {i} must be an object." });
                     continue;
@@ -1136,7 +1136,7 @@ namespace MCPForUnity.Editor.Tools
                 var curve = new AnimationCurve();
                 foreach (var keyToken in keysArray)
                 {
-                    if (keyToken is not JObject keyObj)
+                    if (!(keyToken is JObject keyObj))
                     {
                         message = "Each keyframe must be an object with 'time' and 'value'.";
                         return false;
@@ -1298,7 +1298,7 @@ namespace MCPForUnity.Editor.Tools
             targetGuid = null;
             error = null;
 
-            if (targetToken is not JObject targetObj)
+            if (!(targetToken is JObject targetObj))
             {
                 error = new ErrorResponse(CodeInvalidParams, new { message = "'target' must be an object with {guid|path}." });
                 return false;

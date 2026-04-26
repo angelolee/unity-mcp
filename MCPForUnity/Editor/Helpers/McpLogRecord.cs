@@ -15,7 +15,7 @@ namespace MCPForUnity.Editor.Helpers
         private static readonly string ErrorLogPath = Path.Combine(LogDir, "mcpError.log");
         private const long MaxLogSizeBytes = 1024 * 1024; // 1 MB
         private static bool _sessionStarted;
-        private static readonly object _logLock = new();
+        private static readonly object _logLock = new object();
 
         internal static bool IsEnabled
         {

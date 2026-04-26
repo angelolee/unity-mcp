@@ -45,7 +45,7 @@ namespace MCPForUnity.Editor.Services.Transport.Transports
         private CancellationTokenSource _connectionCts;
         private Task _receiveTask;
         private Task _keepAliveTask;
-        private readonly SemaphoreSlim _sendLock = new(1, 1);
+        private readonly SemaphoreSlim _sendLock = new SemaphoreSlim(1, 1);
 
         private Uri _endpointUri;
         private string _sessionId;

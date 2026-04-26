@@ -62,8 +62,8 @@ namespace MCPForUnity.Editor.Services.Transport
             }
         }
 
-        private static readonly Dictionary<string, PendingCommand> Pending = new();
-        private static readonly object PendingLock = new();
+        private static readonly Dictionary<string, PendingCommand> Pending = new Dictionary<string, PendingCommand>();
+        private static readonly object PendingLock = new object();
         private static bool updateHooked;
         private static bool initialised;
 

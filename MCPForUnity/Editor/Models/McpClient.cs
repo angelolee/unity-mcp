@@ -18,7 +18,7 @@ namespace MCPForUnity.Editor.Models
         public bool EnsureEnvObject; // Whether to ensure the env object is present in the config
         public bool StripEnvWhenNotRequired; // Whether to strip the env object when not required
         public string HttpUrlProperty = "url"; // The property name for the HTTP URL in the config
-        public Dictionary<string, object> DefaultUnityFields = new();
+        public Dictionary<string, object> DefaultUnityFields = new Dictionary<string, object>();
 
         // Helper method to convert the enum to a display string
         public string GetStatusDisplayString()

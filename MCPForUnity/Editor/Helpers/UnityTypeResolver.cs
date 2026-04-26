@@ -17,8 +17,8 @@ namespace MCPForUnity.Editor.Helpers
     /// </summary>
     public static class UnityTypeResolver
     {
-        private static readonly Dictionary<string, Type> CacheByFqn = new(StringComparer.Ordinal);
-        private static readonly Dictionary<string, Type> CacheByName = new(StringComparer.Ordinal);
+        private static readonly Dictionary<string, Type> CacheByFqn = new Dictionary<string, Type>(StringComparer.Ordinal);
+        private static readonly Dictionary<string, Type> CacheByName = new Dictionary<string, Type>(StringComparer.Ordinal);
 
         /// <summary>
         /// Resolves a type by name, with optional base type constraint.

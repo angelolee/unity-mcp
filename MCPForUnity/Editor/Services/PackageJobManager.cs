@@ -31,8 +31,8 @@ namespace MCPForUnity.Editor.Services
         private const int MaxJobsToKeep = 10;
         private const long DomainReloadTimeoutMs = 120_000;
 
-        private static readonly object LockObj = new();
-        private static readonly Dictionary<string, PackageJob> Jobs = new();
+        private static readonly object LockObj = new object();
+        private static readonly Dictionary<string, PackageJob> Jobs = new Dictionary<string, PackageJob>();
 
         static PackageJobManager()
         {
