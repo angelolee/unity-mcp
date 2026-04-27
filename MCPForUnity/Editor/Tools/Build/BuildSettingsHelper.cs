@@ -66,7 +66,9 @@ namespace MCPForUnity.Editor.Tools.Build
                     case "architecture":
                         int arch = value.ToLowerInvariant() switch
                         {
-                            "x86_64" or "none" or "default" => 0,
+                            "x86_64" => 0,
+                            "none" => 0,
+                            "default" => 0,
                             "arm64" => 1,
                             "universal" => 2,
                             _ => -1
