@@ -56,7 +56,9 @@ namespace MCPForUnity.Editor.Tools.Build
                 locationPathName = outputPath,
                 scenes = scenes ?? GetDefaultScenes(),
                 options = buildOptions,
+#if UNITY_2021_2_OR_NEWER
                 subtarget = subtarget
+#endif
             };
         }
 
@@ -72,7 +74,11 @@ namespace MCPForUnity.Editor.Tools.Build
             {
                 switch (name.ToLowerInvariant())
                 {
+#if UNITY_2021_2_OR_NEWER
                     case "clean_build": opts |= BuildOptions.CleanBuildCache; break;
+#else
+                    case "clean_build": break;
+#endif
                     case "auto_run": opts |= BuildOptions.AutoRunPlayer; break;
                     case "deep_profiling": opts |= BuildOptions.EnableDeepProfilingSupport; break;
                     case "compress_lz4": opts |= BuildOptions.CompressWithLz4; break;

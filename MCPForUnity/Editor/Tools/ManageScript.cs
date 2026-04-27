@@ -271,8 +271,9 @@ namespace MCPForUnity.Editor.Tools
                         }).ToArray();
 
                         var result = new { diagnostics = diags };
-                        return ok ? new SuccessResponse("Validation completed.", result)
-                                   : new ErrorResponse("Validation failed.", result);
+                        if (ok)
+                            return new SuccessResponse("Validation completed.", result);
+                        return new ErrorResponse("Validation failed.", result);
                     }
                 case "edit":
                     McpLog.Warn("manage_script.edit is deprecated; prefer apply_text_edits. Serving structured edit for backward compatibility.");

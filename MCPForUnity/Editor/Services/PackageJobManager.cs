@@ -128,7 +128,11 @@ namespace MCPForUnity.Editor.Services
             try
             {
                 string packageName = ExtractPackageName(job.Package);
+#if UNITY_2021_2_OR_NEWER
                 var allPackages = PackageInfo.GetAllRegisteredPackages();
+#else
+                var allPackages = new PackageInfo[0];
+#endif
                 var info = FindPackageInfo(allPackages, packageName, job.Package);
 
                 if (job.Operation == "add" || job.Operation == "embed")

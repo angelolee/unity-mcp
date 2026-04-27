@@ -24,7 +24,11 @@ namespace MCPForUnity.Editor.Windows.Components.ClientConfig
     public class McpClientConfigSection
     {
         // UI Elements
+#if UNITY_2021_2_OR_NEWER
         private DropdownField clientDropdown;
+#else
+        private VisualElement clientDropdown;
+#endif
         private Button configureAllButton;
         private VisualElement clientStatusIndicator;
         private Label clientStatusLabel;
@@ -79,7 +83,11 @@ namespace MCPForUnity.Editor.Windows.Components.ClientConfig
 
         private void CacheUIElements()
         {
+#if UNITY_2021_2_OR_NEWER
             clientDropdown = Root.Q<DropdownField>("client-dropdown");
+#else
+            clientDropdown = Root.Q<VisualElement>("client-dropdown");
+#endif
             configureAllButton = Root.Q<Button>("configure-all-button");
             clientStatusIndicator = Root.Q<VisualElement>("client-status-indicator");
             clientStatusLabel = Root.Q<Label>("client-status");
@@ -110,7 +118,9 @@ namespace MCPForUnity.Editor.Windows.Components.ClientConfig
             }
 
             var clientNames = configurators.Select(c => c.DisplayName).ToList();
+#if UNITY_2021_2_OR_NEWER
             clientDropdown.choices = clientNames;
+#endif
             if (clientNames.Count > 0)
             {
                 // Restore last selected client from EditorPrefs
@@ -119,7 +129,9 @@ namespace MCPForUnity.Editor.Windows.Components.ClientConfig
                 if (restoredIndex < 0)
                     restoredIndex = 0;
 
+#if UNITY_2021_2_OR_NEWER
                 clientDropdown.index = restoredIndex;
+#endif
                 selectedClientIndex = restoredIndex;
             }
 
@@ -136,6 +148,7 @@ namespace MCPForUnity.Editor.Windows.Components.ClientConfig
 
         private void RegisterCallbacks()
         {
+#if UNITY_2021_2_OR_NEWER
             clientDropdown.RegisterValueChangedCallback(evt =>
             {
                 int selectedIndex = GetIndexForDropdownValue(evt.newValue);
@@ -160,6 +173,7 @@ namespace MCPForUnity.Editor.Windows.Components.ClientConfig
                 UpdateClientProjectDirVisibility();
                 UpdateInstallSkillsVisibility();
             });
+#endif
 
             configureAllButton.clicked += OnConfigureAllClientsClicked;
             configureButton.clicked += OnConfigureClicked;
@@ -798,7 +812,11 @@ namespace MCPForUnity.Editor.Windows.Components.ClientConfig
             if (string.IsNullOrWhiteSpace(dropdownValue))
                 return -1;
 
+#if UNITY_2021_2_OR_NEWER
             int directIndex = clientDropdown.choices?.IndexOf(dropdownValue) ?? -1;
+#else
+            int directIndex = -1;
+#endif
             if (directIndex >= 0 && directIndex < configurators.Count)
                 return directIndex;
 

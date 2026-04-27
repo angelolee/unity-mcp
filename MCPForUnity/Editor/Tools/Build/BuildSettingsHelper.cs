@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Build;
 
 namespace MCPForUnity.Editor.Tools.Build
 {
     public static class BuildSettingsHelper
     {
-        public static object ReadProperty(string property, NamedBuildTarget namedTarget)
+        public static object ReadProperty(string property, BuildTargetGroup namedTarget)
         {
             switch (property.ToLowerInvariant())
             {
@@ -23,7 +22,7 @@ namespace MCPForUnity.Editor.Tools.Build
                     var backend = PlayerSettings.GetScriptingBackend(namedTarget);
                     return new { property, value = backend == ScriptingImplementation.IL2CPP ? "il2cpp" : "mono" };
                 case "defines":
-                    return new { property, value = PlayerSettings.GetScriptingDefineSymbols(namedTarget) };
+                    return new { property, value = PlayerSettings.GetScriptingDefineSymbolsForGroup(namedTarget) };
                 case "architecture":
                     var arch = PlayerSettings.GetArchitecture(namedTarget);
                     string archName = arch switch { 0 => "x86_64", 1 => "arm64", 2 => "universal", _ => "unknown" };
@@ -33,7 +32,7 @@ namespace MCPForUnity.Editor.Tools.Build
             }
         }
 
-        public static string WriteProperty(string property, string value, NamedBuildTarget namedTarget)
+        public static string WriteProperty(string property, string value, BuildTargetGroup namedTarget)
         {
             try
             {
@@ -61,7 +60,7 @@ namespace MCPForUnity.Editor.Tools.Build
                         PlayerSettings.SetScriptingBackend(namedTarget, impl);
                         return null;
                     case "defines":
-                        PlayerSettings.SetScriptingDefineSymbols(namedTarget, value);
+                        PlayerSettings.SetScriptingDefineSymbolsForGroup(namedTarget, value);
                         return null;
                     case "architecture":
                         int arch = value.ToLowerInvariant() switch

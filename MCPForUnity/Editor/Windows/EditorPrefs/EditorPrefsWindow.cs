@@ -326,8 +326,12 @@ namespace MCPForUnity.Editor.Windows
             var valueField = itemElement.Q<TextField>("value-field");
             valueField.value = item.Value;
 
+#if UNITY_2021_2_OR_NEWER
             var typeDropdown = itemElement.Q<DropdownField>("type-dropdown");
             typeDropdown.index = (int)item.Type;
+#else
+            VisualElement typeDropdown = itemElement.Q<VisualElement>("type-dropdown");
+#endif
 
             // Buttons
             var saveButton = itemElement.Q<Button>("save-button");
@@ -341,7 +345,11 @@ namespace MCPForUnity.Editor.Windows
             }
 
             // Callbacks
+#if UNITY_2021_2_OR_NEWER
             saveButton.clicked += () => SavePref(item, valueField.value, (EditorPrefType)typeDropdown.index);
+#else
+            saveButton.clicked += () => SavePref(item, valueField.value, item.Type);
+#endif
 
             return itemElement;
         }

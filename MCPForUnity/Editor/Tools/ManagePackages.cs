@@ -360,7 +360,11 @@ namespace MCPForUnity.Editor.Tools
 
             try
             {
+#if UNITY_2021_2_OR_NEWER
                 var allPackages = PackageInfo.GetAllRegisteredPackages();
+#else
+                var allPackages = new PackageInfo[0];
+#endif
                 var info = allPackages.FirstOrDefault(pkg =>
                     string.Equals(pkg.name, package, StringComparison.OrdinalIgnoreCase));
 
@@ -593,7 +597,11 @@ namespace MCPForUnity.Editor.Tools
         {
             try
             {
+#if UNITY_2021_2_OR_NEWER
                 var allPackages = PackageInfo.GetAllRegisteredPackages();
+#else
+                var allPackages = new PackageInfo[0];
+#endif
                 return new SuccessResponse(
                     "Package manager is available.",
                     new
@@ -721,7 +729,11 @@ namespace MCPForUnity.Editor.Tools
             {
                 string name = PackageJobManager.ExtractPackageName(packageName);
 
+#if UNITY_2021_2_OR_NEWER
                 var allPackages = PackageInfo.GetAllRegisteredPackages();
+#else
+                var allPackages = new PackageInfo[0];
+#endif
                 return allPackages
                     .Where(pkg => pkg.dependencies.Any(d =>
                         string.Equals(d.name, name, StringComparison.OrdinalIgnoreCase)))

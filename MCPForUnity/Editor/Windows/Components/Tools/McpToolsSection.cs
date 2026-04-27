@@ -653,14 +653,14 @@ namespace MCPForUnity.Editor.Windows.Components.Tools
 
             var field = new IntegerField
             {
-                value = Math.Clamp(currentValue, 1, BatchExecute.AbsoluteMaxCommandsPerBatch),
+                value = Math.Max(1, Math.Min(currentValue, BatchExecute.AbsoluteMaxCommandsPerBatch)),
                 style = { width = 60 }
             };
             field.tooltip = $"Number of commands allowed per batch_execute call (1–{BatchExecute.AbsoluteMaxCommandsPerBatch}). Default: {BatchExecute.DefaultMaxCommandsPerBatch}.";
 
             field.RegisterValueChangedCallback(evt =>
             {
-                int clamped = Math.Clamp(evt.newValue, 1, BatchExecute.AbsoluteMaxCommandsPerBatch);
+                int clamped = Math.Max(1, Math.Min(evt.newValue, BatchExecute.AbsoluteMaxCommandsPerBatch));
                 if (clamped != evt.newValue)
                 {
                     field.SetValueWithoutNotify(clamped);

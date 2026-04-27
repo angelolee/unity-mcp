@@ -513,7 +513,7 @@ namespace MCPForUnity.Editor.Setup
             var normalizedRoot = Path.GetFullPath(root);
             foreach (var filePath in Directory.GetFiles(normalizedRoot, "*", SearchOption.AllDirectories))
             {
-                var relativePath = Path.GetRelativePath(normalizedRoot, filePath).Replace('\\', '/');
+                var relativePath = filePath.Substring(normalizedRoot.Length).TrimStart(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar).Replace('\\', '/');
                 if (string.Equals(relativePath, SyncOwnershipMarker, StringComparison.OrdinalIgnoreCase))
                 {
                     continue;

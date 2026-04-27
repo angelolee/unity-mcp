@@ -1423,7 +1423,7 @@ namespace MCPForUnity.Editor.Tools
             var s = AssetPathUtility.NormalizeSeparators(path);
             while (s.IndexOf("//", StringComparison.Ordinal) >= 0)
             {
-                s = s.Replace("//", "/", StringComparison.Ordinal);
+                s = s.Replace("//", "/");
             }
             return s;
         }

@@ -165,9 +165,11 @@ namespace MCPForUnity.Editor.Helpers
             var editorAsms = Array.Empty<System.Reflection.Assembly>();
 #endif
 
-            Func<Type, bool> match = isShort
-                ? (t => t.Name.Equals(query, StringComparison.Ordinal))
-                : (t => t.FullName?.Equals(query, StringComparison.Ordinal) ?? false);
+            Func<Type, bool> match;
+            if (isShort)
+                match = t => t.Name.Equals(query, StringComparison.Ordinal);
+            else
+                match = t => t.FullName?.Equals(query, StringComparison.Ordinal) ?? false;
 
             var fromPlayer = playerAsms.SelectMany(SafeGetTypes)
                                        .Where(t => PassesConstraint(t, requiredBaseType))

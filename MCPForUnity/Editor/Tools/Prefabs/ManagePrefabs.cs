@@ -6,6 +6,10 @@ using MCPForUnity.Editor.Helpers;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+#if !UNITY_2021_2_OR_NEWER
+using PrefabStageUtility = UnityEditor.Experimental.SceneManagement.PrefabStageUtility;
+using PrefabStage = UnityEditor.Experimental.SceneManagement.PrefabStage;
+#endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -418,7 +422,11 @@ namespace MCPForUnity.Editor.Tools.Prefabs
             string[] colorProps = { "_BaseColor", "_Color" };
             foreach (string prop in colorProps)
             {
+#if UNITY_2021_2_OR_NEWER
                 if (mat.HasProperty(prop) && block.HasColor(prop))
+#else
+                if (mat.HasProperty(prop))
+#endif
                 {
                     mat.SetColor(prop, block.GetColor(prop));
                 }
@@ -1310,6 +1318,7 @@ namespace MCPForUnity.Editor.Tools.Prefabs
                     return new ErrorResponse($"Prefab asset not found at '{sanitizedPath}'.");
                 }
 
+#if UNITY_2021_2_OR_NEWER
                 var prefabStage = PrefabStageUtility.OpenPrefab(sanitizedPath);
                 bool enteredStage = prefabStage != null
                     && string.Equals(prefabStage.assetPath, sanitizedPath, StringComparison.OrdinalIgnoreCase)
@@ -1330,6 +1339,9 @@ namespace MCPForUnity.Editor.Tools.Prefabs
                         enteredPrefabStage = enteredStage
                     }
                 );
+#else
+                return new ErrorResponse("open_prefab_stage requires Unity 2021.2 or newer.");
+#endif
             }
             catch (Exception e)
             {

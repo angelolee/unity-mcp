@@ -937,6 +937,7 @@ namespace MCPForUnity.Editor.Windows
             BatchUpmRemove(new[] { packageId }, onComplete);
         }
 
+#if UNITY_2021_2_OR_NEWER
         private static void BatchUpmAdd(string[] packageIds, Action onComplete = null)
         {
             var request = UnityEditor.PackageManager.Client.AddAndRemove(packageIds, null);
@@ -967,6 +968,68 @@ namespace MCPForUnity.Editor.Windows
             };
             EditorApplication.update += pollCallback;
         }
+#else
+        private static void BatchUpmAdd(string[] packageIds, Action onComplete = null)
+        {
+            if (packageIds == null || packageIds.Length == 0) { onComplete?.Invoke(); return; }
+            EditorUtility.DisplayProgressBar("Installing Packages", $"Installing {packageIds.Length} package(s)...", 0.5f);
+            BatchUpmSequential(packageIds, 0, true, onComplete);
+        }
+
+        private static void BatchUpmRemove(string[] packageIds, Action onComplete = null)
+        {
+            if (packageIds == null || packageIds.Length == 0) { onComplete?.Invoke(); return; }
+            EditorUtility.DisplayProgressBar("Removing Packages", $"Removing {packageIds.Length} package(s)...", 0.5f);
+            BatchUpmSequential(packageIds, 0, false, onComplete);
+        }
+
+        private static void BatchUpmSequential(string[] ids, int index, bool isAdd, Action onComplete)
+        {
+            if (index >= ids.Length)
+            {
+                EditorUtility.ClearProgressBar();
+                Debug.Log($"[MCP] Package {(isAdd ? "install" : "remove")} succeeded.");
+                onComplete?.Invoke();
+                return;
+            }
+            EditorApplication.CallbackFunction pollCallback = null;
+            if (isAdd)
+            {
+                var addReq = UnityEditor.PackageManager.Client.Add(ids[index]);
+                pollCallback = () =>
+                {
+                    if (!addReq.IsCompleted) return;
+                    EditorApplication.update -= pollCallback;
+                    if (addReq.Status != UnityEditor.PackageManager.StatusCode.Success)
+                    {
+                        EditorUtility.ClearProgressBar();
+                        Debug.LogError($"[MCP] Package install failed: {addReq.Error?.message}");
+                        onComplete?.Invoke();
+                        return;
+                    }
+                    BatchUpmSequential(ids, index + 1, isAdd, onComplete);
+                };
+            }
+            else
+            {
+                var removeReq = UnityEditor.PackageManager.Client.Remove(ids[index]);
+                pollCallback = () =>
+                {
+                    if (!removeReq.IsCompleted) return;
+                    EditorApplication.update -= pollCallback;
+                    if (removeReq.Status != UnityEditor.PackageManager.StatusCode.Success)
+                    {
+                        EditorUtility.ClearProgressBar();
+                        Debug.LogError($"[MCP] Package remove failed: {removeReq.Error?.message}");
+                        onComplete?.Invoke();
+                        return;
+                    }
+                    BatchUpmSequential(ids, index + 1, isAdd, onComplete);
+                };
+            }
+            EditorApplication.update += pollCallback;
+        }
+#endif
 
         private static void UninstallRoslyn()
         {

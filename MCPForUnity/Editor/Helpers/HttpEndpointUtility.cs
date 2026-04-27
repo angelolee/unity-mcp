@@ -333,7 +333,7 @@ namespace MCPForUnity.Editor.Helpers
             // Strip trailing "/mcp" (case-insensitive) if provided.
             if (trimmed.EndsWith("/mcp", StringComparison.OrdinalIgnoreCase))
             {
-                trimmed = trimmed[..^4];
+                trimmed = trimmed.Substring(0, trimmed.Length - 4);
             }
 
             return trimmed;

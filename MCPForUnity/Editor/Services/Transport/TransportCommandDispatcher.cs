@@ -303,7 +303,7 @@ namespace MCPForUnity.Editor.Services.Transport
                 {
                     status = "error",
                     error = "Invalid JSON format",
-                    receivedText = commandText.Length > 50 ? commandText[..50] + "..." : commandText
+                    receivedText = commandText.Length > 50 ? commandText.Substring(0, 50) + "..." : commandText
                 };
                 pending.TrySetResult(JsonConvert.SerializeObject(invalidJsonResponse));
                 RemovePending(id, pending);
@@ -381,7 +381,7 @@ namespace MCPForUnity.Editor.Services.Transport
                             logStatus = "ERROR";
                             logError = t.Exception?.InnerException?.Message;
                         }
-                        else if (t.IsCompletedSuccessfully && t.Result != null)
+                        else if (t.IsCompleted && !t.IsFaulted && !t.IsCanceled && t.Result != null)
                         {
                             try
                             {
@@ -429,8 +429,10 @@ namespace MCPForUnity.Editor.Services.Transport
             PendingCommand pending = null;
             lock (PendingLock)
             {
-                if (Pending.Remove(id, out pending))
+                if (Pending.ContainsKey(id))
                 {
+                    pending = Pending[id];
+                    Pending.Remove(id);
                     UnhookUpdateIfIdle();
                 }
             }

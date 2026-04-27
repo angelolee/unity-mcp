@@ -6,6 +6,9 @@ using MCPForUnity.Editor.Helpers;
 using MCPForUnity.Editor.Tools;
 using Newtonsoft.Json.Linq;
 using UnityEditor.SceneManagement;
+#if !UNITY_2021_2_OR_NEWER
+using PrefabStageUtility = UnityEditor.Experimental.SceneManagement.PrefabStageUtility;
+#endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

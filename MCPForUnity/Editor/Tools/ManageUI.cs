@@ -298,6 +298,7 @@ namespace MCPForUnity.Editor.Tools
 
         private static object AttachUIDocument(JObject @params)
         {
+#if UNITY_2021_1_OR_NEWER
             var p = new ToolParams(@params);
 
             var targetResult = p.GetRequired("target");
@@ -390,10 +391,14 @@ namespace MCPForUnity.Editor.Tools
                     panelSettings = AssetDatabase.GetAssetPath(panelSettings),
                     sortOrder
                 });
+#else
+            return new ErrorResponse("attach_ui_document requires Unity 2021.1 or newer (UI Toolkit Runtime).");
+#endif
         }
 
         private static object CreatePanelSettings(JObject @params)
         {
+#if UNITY_2021_1_OR_NEWER
             var p = new ToolParams(@params);
 
             var pathResult = p.GetRequired("path");
@@ -457,10 +462,14 @@ namespace MCPForUnity.Editor.Tools
 
             return new SuccessResponse($"Created PanelSettings at {path}",
                 new { path, applied = changes });
+#else
+            return new ErrorResponse("create_panel_settings requires Unity 2021.1 or newer (UI Toolkit Runtime).");
+#endif
         }
 
         private static object UpdatePanelSettings(JObject @params)
         {
+#if UNITY_2021_1_OR_NEWER
             var p = new ToolParams(@params);
 
             var pathResult = p.GetRequired("path");
@@ -493,8 +502,12 @@ namespace MCPForUnity.Editor.Tools
 
             return new SuccessResponse($"Updated PanelSettings at {path}",
                 new { path, applied = changes });
+#else
+            return new ErrorResponse("update_panel_settings requires Unity 2021.1 or newer (UI Toolkit Runtime).");
+#endif
         }
 
+#if UNITY_2021_1_OR_NEWER
         private static PanelSettings CreateDefaultPanelSettings(string path)
         {
             string dir = Path.GetDirectoryName(path);
@@ -620,6 +633,7 @@ namespace MCPForUnity.Editor.Tools
             ps.dynamicAtlasSettings = daCopy;
             changes.Add("dynamicAtlasSettings");
         }
+#endif // UNITY_2021_1_OR_NEWER
 
         // ── Tiny helpers to keep the switch compact ─────────────────────────
 
@@ -721,6 +735,7 @@ namespace MCPForUnity.Editor.Tools
                 return new ErrorResponse($"Could not find target GameObject: {target}");
             }
 
+#if UNITY_2021_1_OR_NEWER
             var uiDoc = go.GetComponent<UIDocument>();
             if (uiDoc == null)
             {
@@ -752,6 +767,9 @@ namespace MCPForUnity.Editor.Tools
                         : null,
                     tree
                 });
+#else
+            return new ErrorResponse("GetVisualTree requires Unity 2021.1 or newer (UIDocument runtime support).");
+#endif
         }
 
         private static object SerializeVisualElement(VisualElement element, int depth, int maxDepth)
@@ -983,6 +1001,7 @@ namespace MCPForUnity.Editor.Tools
             }
             // ── End play-mode branch ────────────────────────────────────────────────
 
+#if UNITY_2021_1_OR_NEWER
             // Resolve UIDocument
             UIDocument uiDoc = null;
             GameObject tempGo = null;
@@ -1210,6 +1229,9 @@ namespace MCPForUnity.Editor.Tools
                         UnityEngine.Object.DestroyImmediate(tempPs, true);
                 }
             }
+#else
+            return new ErrorResponse("render_ui in edit mode requires Unity 2021.1 or newer (UI Toolkit Runtime). In play mode, it works on all versions via ScreenCapture.");
+#endif
         }
 
         // ---- Link Stylesheet ----
@@ -1427,6 +1449,7 @@ namespace MCPForUnity.Editor.Tools
                 return new ErrorResponse($"Could not find target GameObject: {target}");
             }
 
+#if UNITY_2021_1_OR_NEWER
             var uiDoc = go.GetComponent<UIDocument>();
             if (uiDoc == null)
             {
@@ -1446,6 +1469,9 @@ namespace MCPForUnity.Editor.Tools
                     gameObject = go.name,
                     removedSourceAsset = sourceAsset,
                 });
+#else
+            return new ErrorResponse("DetachUIDocument requires Unity 2021.1 or newer (UIDocument runtime support).");
+#endif
         }
 
         // ---- Modify Visual Element ----
@@ -1471,6 +1497,7 @@ namespace MCPForUnity.Editor.Tools
                 return new ErrorResponse($"Could not find target GameObject: {target}");
             }
 
+#if UNITY_2021_1_OR_NEWER
             var uiDoc = go.GetComponent<UIDocument>();
             if (uiDoc == null)
             {
@@ -1605,6 +1632,9 @@ namespace MCPForUnity.Editor.Tools
             return new SuccessResponse(
                 $"Modified element '{elementName}' on {go.name}: {string.Join(", ", applied)}",
                 responseData);
+#else
+            return new ErrorResponse("ModifyVisualElement requires Unity 2021.1 or newer (UIDocument runtime support).");
+#endif
         }
 
         private static void ApplyInlineStyles(VisualElement element, JObject styleObj, List<string> modifications)

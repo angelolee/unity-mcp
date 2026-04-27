@@ -1863,19 +1863,19 @@ namespace MCPForUnity.External.Tommy
          * A pattern to verify the integer value according to the TOML specification.
          */
         public static readonly Regex IntegerPattern =
-            new(@"^(\+|-)?(?!_)(0|(?!0)(_?\d)*)$", RegexOptions.Compiled);
+            new Regex(@"^(\+|-)?(?!_)(0|(?!0)(_?\d)*)$", RegexOptions.Compiled);
 
         /**
          * A pattern to verify a special 0x, 0o and 0b forms of an integer according to the TOML specification.
          */
         public static readonly Regex BasedIntegerPattern =
-            new(@"^0(?<base>x|b|o)(?!_)(_?[0-9A-F])*$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            new Regex(@"^0(?<base>x|b|o)(?!_)(_?[0-9A-F])*$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         /**
          * A pattern to verify the float value according to the TOML specification.
          */
         public static readonly Regex FloatPattern =
-            new(@"^(\+|-)?(?!_)(0|(?!0)(_?\d)+)(((e(\+|-)?(?!_)(_?\d)+)?)|(\.(?!_)(_?\d)+(e(\+|-)?(?!_)(_?\d)+)?))$",
+            new Regex(@"^(\+|-)?(?!_)(0|(?!0)(_?\d)+)(((e(\+|-)?(?!_)(_?\d)+)?)|(\.(?!_)(_?\d)+(e(\+|-)?(?!_)(_?\d)+)?))$",
                 RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         /**

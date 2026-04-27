@@ -1,5 +1,4 @@
 using UnityEditor;
-using UnityEditor.Build;
 
 namespace MCPForUnity.Editor.Tools.Build
 {
@@ -57,19 +56,14 @@ namespace MCPForUnity.Editor.Tools.Build
             }
         }
 
-        public static NamedBuildTarget GetNamedBuildTarget(BuildTarget target)
-        {
-            return NamedBuildTarget.FromBuildTargetGroup(GetTargetGroup(target));
-        }
-
-        public static string TryResolveNamedBuildTarget(string name, out NamedBuildTarget namedTarget)
+        public static string TryResolveBuildTargetGroup(string name, out BuildTargetGroup targetGroup)
         {
             if (!TryResolveBuildTarget(name, out var buildTarget))
             {
-                namedTarget = default;
+                targetGroup = BuildTargetGroup.Unknown;
                 return $"Unknown build target: '{name}'. Valid targets: windows64, osx, linux64, android, ios, webgl, uwp, tvos, visionos";
             }
-            namedTarget = GetNamedBuildTarget(buildTarget);
+            targetGroup = GetTargetGroup(buildTarget);
             return null;
         }
 
@@ -99,12 +93,16 @@ namespace MCPForUnity.Editor.Tools.Build
 
         public static int ResolveSubtarget(string subtarget)
         {
+#if UNITY_2021_2_OR_NEWER
             if (string.IsNullOrEmpty(subtarget))
                 return (int)StandaloneBuildSubtarget.Player;
             string lower = subtarget.ToLowerInvariant();
             if (lower == "server")
                 return (int)StandaloneBuildSubtarget.Server;
             return (int)StandaloneBuildSubtarget.Player;
+#else
+            return 0;
+#endif
         }
     }
 }
