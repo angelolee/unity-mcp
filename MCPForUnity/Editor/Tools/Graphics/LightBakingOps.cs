@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
+using MCPForUnity.Runtime.Helpers;
 
 namespace MCPForUnity.Editor.Tools.Graphics
 {
@@ -124,7 +125,7 @@ namespace MCPForUnity.Editor.Tools.Graphics
                 {
                     probeName = probe.name,
                     outputPath,
-                    instanceID = go.GetInstanceID()
+                    instanceID = go.GetInstanceIDCompat()
                 }
             };
         }
@@ -276,7 +277,7 @@ namespace MCPForUnity.Editor.Tools.Graphics
                 message = $"Created Light Probe Group '{name}' with {positions.Count} probes ({gridX}x{gridY}x{gridZ} grid, spacing {spacing}).",
                 data = new
                 {
-                    instanceID = go.GetInstanceID(),
+                    instanceID = go.GetInstanceIDCompat(),
                     probeCount = positions.Count,
                     gridSize = new[] { gridX, gridY, gridZ },
                     spacing,
@@ -329,7 +330,7 @@ namespace MCPForUnity.Editor.Tools.Graphics
                 message = $"Created Reflection Probe '{name}' (mode: {mode}, resolution: {resolution}, HDR: {hdr}).",
                 data = new
                 {
-                    instanceID = go.GetInstanceID(),
+                    instanceID = go.GetInstanceIDCompat(),
                     mode = mode.ToString(),
                     resolution,
                     hdr,
@@ -385,7 +386,7 @@ namespace MCPForUnity.Editor.Tools.Graphics
                 message = $"Set {positions.Length} probe positions on '{go.name}'.",
                 data = new
                 {
-                    instanceID = go.GetInstanceID(),
+                    instanceID = go.GetInstanceIDCompat(),
                     probeCount = positions.Length
                 }
             };

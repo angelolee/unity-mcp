@@ -601,11 +601,7 @@ namespace MCPForUnity.Editor.Tools
                         targetCamera = Camera.main;
                         if (targetCamera == null)
                         {
-#if UNITY_2022_2_OR_NEWER
-                            var allCams = UnityEngine.Object.FindObjectsByType<Camera>(FindObjectsSortMode.None);
-#else
-                            var allCams = UnityEngine.Object.FindObjectsOfType<Camera>();
-#endif
+                            var allCams = UnityFindObjectsCompat.FindAll<Camera>();
                             targetCamera = allCams.Length > 0 ? allCams[0] : null;
                         }
                     }
@@ -643,11 +639,7 @@ namespace MCPForUnity.Editor.Tools
 
                 // Default path: use ScreenCapture API if available, camera fallback otherwise
                 bool screenCaptureAvailable = ScreenshotUtility.IsScreenCaptureModuleAvailable;
-#if UNITY_2022_2_OR_NEWER
-                bool hasCameraFallback = Camera.main != null || UnityEngine.Object.FindObjectsByType<Camera>(FindObjectsSortMode.None).Length > 0;
-#else
-                bool hasCameraFallback = Camera.main != null || UnityEngine.Object.FindObjectsOfType<Camera>().Length > 0;
-#endif
+                bool hasCameraFallback = Camera.main != null || UnityFindObjectsCompat.FindAll<Camera>().Length > 0;
 
 #if UNITY_2022_1_OR_NEWER
                 if (!screenCaptureAvailable && !hasCameraFallback)
@@ -822,11 +814,7 @@ namespace MCPForUnity.Editor.Tools
                     // Default: calculate combined bounds of all renderers in the scene
                     Bounds bounds = new Bounds(Vector3.zero, Vector3.zero);
                     bool hasBounds = false;
-#if UNITY_2022_2_OR_NEWER
-                    var renderers = UnityEngine.Object.FindObjectsByType<Renderer>(FindObjectsSortMode.None);
-#else
-                    var renderers = UnityEngine.Object.FindObjectsOfType<Renderer>();
-#endif
+                    var renderers = UnityFindObjectsCompat.FindAll<Renderer>();
                     foreach (var r in renderers)
                     {
                         if (r == null || !r.gameObject.activeInHierarchy) continue;
@@ -967,11 +955,7 @@ namespace MCPForUnity.Editor.Tools
                     // Default: calculate combined bounds of all renderers in the scene
                     Bounds bounds = new Bounds(Vector3.zero, Vector3.zero);
                     bool hasBounds = false;
-#if UNITY_2022_2_OR_NEWER
-                    var renderers = UnityEngine.Object.FindObjectsByType<Renderer>(FindObjectsSortMode.None);
-#else
-                    var renderers = UnityEngine.Object.FindObjectsOfType<Renderer>();
-#endif
+                    var renderers = UnityFindObjectsCompat.FindAll<Renderer>();
                     foreach (var r in renderers)
                     {
                         if (r == null || !r.gameObject.activeInHierarchy) continue;
@@ -1219,11 +1203,7 @@ namespace MCPForUnity.Editor.Tools
             }
 
             // Search all cameras by name or path
-#if UNITY_2022_2_OR_NEWER
-            var allCams = UnityEngine.Object.FindObjectsByType<Camera>(FindObjectsSortMode.None);
-#else
-            var allCams = UnityEngine.Object.FindObjectsOfType<Camera>();
-#endif
+            var allCams = UnityFindObjectsCompat.FindAll<Camera>();
             foreach (var cam in allCams)
             {
                 if (cam.name == cameraRef) return cam;
@@ -1275,11 +1255,7 @@ namespace MCPForUnity.Editor.Tools
                     // Frame entire scene by computing combined bounds of all renderers
                     Bounds allBounds = new Bounds(Vector3.zero, Vector3.zero);
                     bool hasAny = false;
-#if UNITY_2022_2_OR_NEWER
-                    foreach (var r in UnityEngine.Object.FindObjectsByType<Renderer>(FindObjectsSortMode.None))
-#else
-                    foreach (var r in UnityEngine.Object.FindObjectsOfType<Renderer>())
-#endif
+                    foreach (var r in UnityFindObjectsCompat.FindAll<Renderer>())
                     {
                         if (r == null || !r.gameObject.activeInHierarchy) continue;
                         if (!hasAny) { allBounds = r.bounds; hasAny = true; }
@@ -2011,7 +1987,7 @@ namespace MCPForUnity.Editor.Tools
             var d = new Dictionary<string, object>
             {
                 { "name", go.name },
-                { "instanceID", go.GetInstanceID() },
+                { "instanceID", go.GetInstanceIDCompat() },
                 { "activeSelf", go.activeSelf },
                 { "activeInHierarchy", go.activeInHierarchy },
                 { "tag", go.tag },
