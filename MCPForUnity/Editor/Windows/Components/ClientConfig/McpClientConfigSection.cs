@@ -27,7 +27,7 @@ namespace MCPForUnity.Editor.Windows.Components.ClientConfig
 #if UNITY_2021_2_OR_NEWER
         private DropdownField clientDropdown;
 #else
-        private VisualElement clientDropdown;
+        private IMGUIContainer clientDropdown;
 #endif
         private Button configureAllButton;
         private VisualElement clientStatusIndicator;
@@ -86,7 +86,40 @@ namespace MCPForUnity.Editor.Windows.Components.ClientConfig
 #if UNITY_2021_2_OR_NEWER
             clientDropdown = Root.Q<DropdownField>("client-dropdown");
 #else
-            clientDropdown = Root.Q<VisualElement>("client-dropdown");
+            // DropdownField doesn't exist in Unity 2020.3. Replace the UXML placeholder with
+            // an IMGUIContainer that renders a standard EditorGUI.Popup dropdown.
+            var clientDropdownPlaceholder = Root.Q<VisualElement>("client-dropdown");
+            clientDropdown = new IMGUIContainer(() =>
+            {
+                if (configurators == null || configurators.Count == 0) return;
+                var options = configurators.Select(c => c.DisplayName).ToArray();
+                float h = clientDropdown.layout.height > 0 ? clientDropdown.layout.height : UnityEditor.EditorGUIUtility.singleLineHeight;
+                int newIndex = UnityEditor.EditorGUI.Popup(
+                    new Rect(0, 0, clientDropdown.layout.width, h),
+                    selectedClientIndex, options);
+                if (newIndex != selectedClientIndex && newIndex >= 0 && newIndex < configurators.Count)
+                {
+                    selectedClientIndex = newIndex;
+                    UnityEditor.EditorPrefs.SetString(EditorPrefKeys.LastSelectedClientId, configurators[selectedClientIndex].Id);
+                    UpdateClientStatus();
+                    UpdateManualConfiguration();
+                    UpdateClaudeCliPathVisibility();
+                    UpdateClientProjectDirVisibility();
+                    UpdateInstallSkillsVisibility();
+                }
+            });
+            clientDropdown.name = "client-dropdown";
+            clientDropdown.style.height = UnityEditor.EditorGUIUtility.singleLineHeight + 2;
+            clientDropdown.AddToClassList("setting-dropdown-inline");
+            if (clientDropdownPlaceholder?.parent != null)
+            {
+                var parent = clientDropdownPlaceholder.parent;
+                int idx = 0;
+                for (int i = 0; i < parent.childCount; i++)
+                    if (parent[i] == clientDropdownPlaceholder) { idx = i; break; }
+                parent.Insert(idx, clientDropdown);
+                parent.Remove(clientDropdownPlaceholder);
+            }
 #endif
             configureAllButton = Root.Q<Button>("configure-all-button");
             clientStatusIndicator = Root.Q<VisualElement>("client-status-indicator");

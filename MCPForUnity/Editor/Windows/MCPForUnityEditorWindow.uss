@@ -3,6 +3,7 @@
     padding: 0px;
     flex-direction: column;
     flex-grow: 1;
+    min-height: 0;
     overflow: hidden;
 }
 
@@ -68,6 +69,7 @@
 
 /* Tabs */
 .tab-toolbar {
+    flex-shrink: 0;
     margin: 8px 12px 0px 12px;
     padding: 0px;
     background-color: transparent;
@@ -103,6 +105,9 @@
 /* Panels */
 .panel-scroll {
     flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0px;
+    min-height: 0;
     margin: 0px;
     padding: 0px 8px 0px 8px;
 }

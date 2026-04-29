@@ -606,12 +606,6 @@ namespace MCPForUnity.Editor.Windows
             toolsTabToggle = rootVisualElement.Q<ToolbarToggle>("tools-tab");
             resourcesTabToggle = rootVisualElement.Q<ToolbarToggle>("resources-tab");
 
-            clientsPanel?.RemoveFromClassList("hidden");
-            depsPanel?.RemoveFromClassList("hidden");
-            advancedPanel?.RemoveFromClassList("hidden");
-            toolsPanel?.RemoveFromClassList("hidden");
-            resourcesPanel?.RemoveFromClassList("hidden");
-
             if (clientsTabToggle != null)
             {
                 clientsTabToggle.RegisterValueChangedCallback(evt =>
@@ -665,57 +659,27 @@ namespace MCPForUnity.Editor.Windows
 
         private void SwitchPanel(ActivePanel panel)
         {
-            // Hide all panels
-            if (clientsPanel != null)
-            {
-                clientsPanel.style.display = DisplayStyle.None;
-            }
+            // Set all panel display states in one pass to avoid a momentary zero-panel
+            // intermediate state that collapses the layout and clips the tab toolbar.
+            if (clientsPanel != null) clientsPanel.style.display = panel == ActivePanel.Clients ? DisplayStyle.Flex : DisplayStyle.None;
+            if (depsPanel != null) depsPanel.style.display = panel == ActivePanel.Deps ? DisplayStyle.Flex : DisplayStyle.None;
+            if (advancedPanel != null) advancedPanel.style.display = panel == ActivePanel.Advanced ? DisplayStyle.Flex : DisplayStyle.None;
+            if (toolsPanel != null) toolsPanel.style.display = panel == ActivePanel.Tools ? DisplayStyle.Flex : DisplayStyle.None;
+            if (resourcesPanel != null) resourcesPanel.style.display = panel == ActivePanel.Resources ? DisplayStyle.Flex : DisplayStyle.None;
 
-            if (depsPanel != null)
-            {
-                depsPanel.style.display = DisplayStyle.None;
-            }
-
-            if (advancedPanel != null)
-            {
-                advancedPanel.style.display = DisplayStyle.None;
-            }
-
-            if (toolsPanel != null)
-            {
-                toolsPanel.style.display = DisplayStyle.None;
-            }
-
-            if (resourcesPanel != null)
-            {
-                resourcesPanel.style.display = DisplayStyle.None;
-            }
-
-            // Show selected panel
             switch (panel)
             {
                 case ActivePanel.Clients:
-                    if (clientsPanel != null) clientsPanel.style.display = DisplayStyle.Flex;
-                    // Refresh client status when switching to Connect tab (e.g., after package/version changes).
                     clientConfigSection?.RefreshSelectedClient(forceImmediate: true);
                     break;
-                case ActivePanel.Deps:
-                    if (depsPanel != null) depsPanel.style.display = DisplayStyle.Flex;
-                    break;
-                case ActivePanel.Advanced:
-                    if (advancedPanel != null) advancedPanel.style.display = DisplayStyle.Flex;
-                    break;
                 case ActivePanel.Tools:
-                    if (toolsPanel != null) toolsPanel.style.display = DisplayStyle.Flex;
                     EnsureToolsLoaded();
                     break;
                 case ActivePanel.Resources:
-                    if (resourcesPanel != null) resourcesPanel.style.display = DisplayStyle.Flex;
                     EnsureResourcesLoaded();
                     break;
             }
 
-            // Update toggle states
             clientsTabToggle?.SetValueWithoutNotify(panel == ActivePanel.Clients);
             depsTabToggle?.SetValueWithoutNotify(panel == ActivePanel.Deps);
             advancedTabToggle?.SetValueWithoutNotify(panel == ActivePanel.Advanced);
