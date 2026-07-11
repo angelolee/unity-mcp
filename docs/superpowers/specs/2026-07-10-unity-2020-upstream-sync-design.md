@@ -2,7 +2,7 @@
 
 ## Goal
 
-Update `features/unity-2020-3` from `refs/remotes/upstream/main` while keeping `MCPForUnity` compatible with Unity 2020.3 and C# 8, then use that branch as the canonical source for the downstream TGS package.
+Update `features/unity-2020-3` from `refs/remotes/upstream/main` while keeping `MCPForUnity` compatible with Unity 2020.3 and C# 8, then maintain a second branch containing the final TGS distribution.
 
 ## Current State
 
@@ -13,7 +13,9 @@ Update `features/unity-2020-3` from `refs/remotes/upstream/main` while keeping `
 
 ## Source of Truth
 
-`features/unity-2020-3` is the canonical Unity 2020.3 port. Upstream changes flow into this branch first. The TGS package is a downstream distribution and is updated only after the port compiles and passes its applicable tests.
+`features/unity-2020-3` is the canonical, vendor-neutral Unity 2020.3 port. Upstream changes flow into this branch first.
+
+`features/tgs-unity-2020-3` is the downstream TGS distribution branch. It shares ancestry with the canonical port, contains the full repository, and modifies `MCPForUnity` with the TGS package identity and TGS-specific behavior. Its `MCPForUnity/` directory is the copy-ready package for the external TGS project.
 
 The update flow is:
 
@@ -22,7 +24,9 @@ The update flow is:
 3. Resolve and adapt changes inside `MCPForUnity` for Unity 2020.3 and C# 8.
 4. Validate the Python server and Unity package tests that are available locally.
 5. Merge the completed update into `features/unity-2020-3` only after review.
-6. Export the validated `MCPForUnity` tree to the TGS package in a separate follow-up change, then reapply TGS package identity and distribution metadata.
+6. Merge the updated canonical port into `features/tgs-unity-2020-3`.
+7. Resolve the TGS branch by preserving the new canonical behavior while reapplying its package identity, distribution metadata, and TGS-specific customizations.
+8. Validate the TGS branch, then copy its `MCPForUnity/` directory into the external TGS project when desired.
 
 ## Compatibility Policy
 
@@ -46,7 +50,29 @@ Perform the merge on a dedicated `codex/` update branch. Resolve conflicts by be
 - retain existing port-specific fixes where the upstream implementation does not supersede them;
 - add or update tests for each non-mechanical adaptation.
 
-Do not merge the TGS repository into this branch. TGS namespace, assembly-name, package-name, `required`, repository metadata, and `mcpServerVersion` changes remain downstream concerns.
+Do not merge the unrelated TGS repository history into the canonical port branch. TGS namespace, assembly-name, package-name, `required`, repository metadata, and `mcpServerVersion` changes belong only to `features/tgs-unity-2020-3`.
+
+## TGS Distribution Branch
+
+Bootstrap `features/tgs-unity-2020-3` from the current `features/unity-2020-3` head. Replace only its `MCPForUnity/` directory with the current package from the external TGS project and record that replacement as the initial TGS customization commit. Do not import the external repository's unrelated Git history.
+
+After bootstrap, all TGS updates use normal Git merges:
+
+1. Complete and validate an upstream port on `features/unity-2020-3`.
+2. Merge `features/unity-2020-3` into `features/tgs-unity-2020-3`.
+3. Resolve conflicts in favor of the new port behavior while retaining documented TGS deltas.
+4. Commit any newly required TGS adaptations separately from the merge when practical.
+
+The TGS branch must preserve these downstream deltas:
+
+- package name and namespaces under `com.tgs.*`;
+- TGS assembly names;
+- independent package version plus `mcpServerVersion`;
+- `required` and repository metadata;
+- TGS-specific runtime, editor, or CI behavior;
+- TGS README, changelog, and license presentation.
+
+The branch is a maintained deliverable, not a disposable snapshot. The external SSD copy is a deployment target after bootstrap, not a required source for future comparisons.
 
 ## Work Decomposition
 
@@ -60,6 +86,8 @@ The implementation is split into independently reviewable phases:
 6. Port optional integrations and Asset Generation with explicit version/dependency handling.
 7. Update Unity 2020.3 tests and resolve server/tool symmetry issues.
 8. Run full available verification and document any tests that require an installed Unity 2020.3 Editor.
+9. Bootstrap the TGS distribution branch and record its downstream deltas.
+10. Merge the validated canonical update into the TGS branch and verify the copy-ready package.
 
 Each phase must leave the branch buildable or have its incomplete state clearly contained in the update branch. Compatibility changes should be committed separately from unrelated upstream content where conflict resolution introduces new code.
 
@@ -73,14 +101,10 @@ Each phase must leave the branch buildable or have its incomplete state clearly 
 - Compare registered Python tools with C# command handlers after the port.
 - Record any upstream feature intentionally unavailable in Unity 2020.3, including the exact technical limitation and user-visible behavior.
 
-## Downstream TGS Follow-up
+## Branch Verification
 
-The TGS package update is outside this synchronization change. After the canonical port is validated, perform a separate comparison against the TGS package and transfer the updated tree while preserving only documented TGS deltas:
-
-- package and assembly identity under `com.tgs.*`;
-- `mcpServerVersion` decoupling;
-- `required` and repository metadata;
-- TGS-specific runtime or CI behavior;
-- TGS documentation.
-
-This separation prevents downstream branding and deployment concerns from obscuring Unity compatibility work.
+- Confirm `features/tgs-unity-2020-3` descends from `features/unity-2020-3` at bootstrap.
+- Confirm future canonical updates appear as merge ancestry in the TGS branch.
+- Compare `features/tgs-unity-2020-3:MCPForUnity` with the external package after deployment; differences must be limited to intentionally external project files.
+- Ensure no `com.tgs.*` identity changes leak back into `features/unity-2020-3`.
+- Keep canonical port verification and TGS distribution verification as separate checkpoints so downstream branding and deployment concerns do not obscure Unity compatibility failures.
