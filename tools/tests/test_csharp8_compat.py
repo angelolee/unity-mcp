@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[2]
 CS_FILES = tuple(sorted((ROOT / "MCPForUnity").rglob("*.cs")))
 
 FORBIDDEN = (
-    ("target-typed new", re.compile(r"=\s*new\(\)")),
+    ("target-typed new", re.compile(r"=\s*new\s*\((?![^)]*\)\s*\[)")),
     ("is not pattern", re.compile(r"\bis\s+not\b")),
     ("record declaration", re.compile(r"^\s*(?:public|internal|private|protected)?\s*record\b", re.MULTILINE)),
     ("init accessor", re.compile(r"\binit\s*;")),
