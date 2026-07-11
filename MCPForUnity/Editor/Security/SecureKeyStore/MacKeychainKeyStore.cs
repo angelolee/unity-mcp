@@ -48,8 +48,8 @@ namespace MCPForUnity.Editor.Security
                     CreateNoWindow = true,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
+                    Arguments = ProcessArgumentFormatter.Join(args),
                 };
-                foreach (string a in args) psi.ArgumentList.Add(a);
                 using (var p = Process.Start(psi))
                 {
                     string outp = p.StandardOutput.ReadToEnd();

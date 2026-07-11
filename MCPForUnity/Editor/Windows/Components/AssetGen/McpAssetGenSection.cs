@@ -68,11 +68,13 @@ namespace MCPForUnity.Editor.Windows.Components.AssetGen
         private void InitializeUI()
         {
             // One-time choices + tooltips; the field values are populated by SyncFromPrefs.
+#if UNITY_2021_2_OR_NEWER
             if (formatDropdown != null)
             {
                 formatDropdown.choices = new List<string> { "glb", "fbx", "obj" };
                 formatDropdown.tooltip = "Default container format for generated 3D models.";
             }
+#endif
 
             if (outputRootField != null)
             {
@@ -90,6 +92,7 @@ namespace MCPForUnity.Editor.Windows.Components.AssetGen
 
         private void RegisterCallbacks()
         {
+#if UNITY_2021_2_OR_NEWER
             if (formatDropdown != null)
             {
                 formatDropdown.RegisterValueChangedCallback(evt =>
@@ -97,6 +100,7 @@ namespace MCPForUnity.Editor.Windows.Components.AssetGen
                     AssetGenPrefs.DefaultFormat = evt.newValue;
                 });
             }
+#endif
 
             if (outputRootField != null)
             {
@@ -127,7 +131,9 @@ namespace MCPForUnity.Editor.Windows.Components.AssetGen
         private void SyncFromPrefs()
         {
             BuildProviderRows();
+#if UNITY_2021_2_OR_NEWER
             formatDropdown?.SetValueWithoutNotify(NormalizeFormat(AssetGenPrefs.DefaultFormat));
+#endif
             outputRootField?.SetValueWithoutNotify(AssetGenPrefs.OutputRoot);
             autoNormalizeToggle?.SetValueWithoutNotify(AssetGenPrefs.AutoNormalize);
             UpdateGltfastNotice();

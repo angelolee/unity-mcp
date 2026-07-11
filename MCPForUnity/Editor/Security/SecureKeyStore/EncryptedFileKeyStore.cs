@@ -92,14 +92,11 @@ namespace MCPForUnity.Editor.Security
             byte[] master = LoadOrCreate(Path.Combine(_dir, "secret.bin"), 32);
             byte[] salt = LoadOrCreate(Path.Combine(_dir, "salt.bin"), 16);
             string password = Convert.ToBase64String(master) + "|" + MachineId();
-            using (var kdf = new Rfc2898DeriveBytes(password, salt, Iterations, HashAlgorithmName.SHA256))
-            {
-                byte[] material = kdf.GetBytes(64);
-                encKey = new byte[32];
-                macKey = new byte[32];
-                Buffer.BlockCopy(material, 0, encKey, 0, 32);
-                Buffer.BlockCopy(material, 32, macKey, 0, 32);
-            }
+            byte[] material = Pbkdf2Sha256(password, salt, Iterations, 64);
+            encKey = new byte[32];
+            macKey = new byte[32];
+            Buffer.BlockCopy(material, 0, encKey, 0, 32);
+            Buffer.BlockCopy(material, 32, macKey, 0, 32);
         }
 
         private byte[] Encrypt(byte[] plaintext)
@@ -176,6 +173,42 @@ namespace MCPForUnity.Editor.Security
             return b;
         }
 
+        private static byte[] Pbkdf2Sha256(string password, byte[] salt, int iterations, int length)
+        {
+            byte[] result = new byte[length];
+            byte[] block = new byte[salt.Length + 4];
+            Buffer.BlockCopy(salt, 0, block, 0, salt.Length);
+            int resultOffset = 0;
+
+            using (var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(password)))
+            {
+                for (int blockIndex = 1; resultOffset < length; blockIndex++)
+                {
+                    block[salt.Length] = (byte)(blockIndex >> 24);
+                    block[salt.Length + 1] = (byte)(blockIndex >> 16);
+                    block[salt.Length + 2] = (byte)(blockIndex >> 8);
+                    block[salt.Length + 3] = (byte)blockIndex;
+
+                    byte[] current = hmac.ComputeHash(block);
+                    byte[] derived = (byte[])current.Clone();
+                    for (int iteration = 1; iteration < iterations; iteration++)
+                    {
+                        current = hmac.ComputeHash(current);
+                        for (int i = 0; i < derived.Length; i++)
+                        {
+                            derived[i] ^= current[i];
+                        }
+                    }
+
+                    int bytesToCopy = Math.Min(derived.Length, length - resultOffset);
+                    Buffer.BlockCopy(derived, 0, result, resultOffset, bytesToCopy);
+                    resultOffset += bytesToCopy;
+                }
+            }
+
+            return result;
+        }
+
         private static byte[] Concat(params byte[][] parts)
         {
             int total = 0;
@@ -210,8 +243,7 @@ namespace MCPForUnity.Editor.Security
                     RedirectStandardError = true,
                     RedirectStandardOutput = true,
                 };
-                psi.ArgumentList.Add(mode);
-                psi.ArgumentList.Add(path);
+                psi.Arguments = ProcessArgumentFormatter.Join(mode, path);
                 using (var p = System.Diagnostics.Process.Start(psi)) p?.WaitForExit(2000);
             }
             catch { /* hardening is best-effort */ }
