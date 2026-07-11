@@ -275,7 +275,11 @@ namespace MCPForUnity.Editor.Tools
             string value = p.Get("value");
 
             // Resolve target
+#if UNITY_2021_2_OR_NEWER
+            string err = BuildTargetMapping.TryResolveNamedBuildTarget(targetName, out var namedTarget);
+#else
             string err = BuildTargetMapping.TryResolveBuildTargetGroup(targetName, out var namedTarget);
+#endif
             if (err != null)
                 return new ErrorResponse(err);
 
