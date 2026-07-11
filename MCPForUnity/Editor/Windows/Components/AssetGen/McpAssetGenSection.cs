@@ -44,7 +44,7 @@ namespace MCPForUnity.Editor.Windows.Components.AssetGen
 
         // Per-provider enable toggles for the GLB-capable (model) providers, used to
         // recompute the glTFast notice when a toggle changes.
-        private readonly List<(string Id, Toggle Toggle)> modelEnableToggles = new();
+        private readonly List<(string Id, Toggle Toggle)> modelEnableToggles = new List<(string Id, Toggle Toggle)>();
 
         public VisualElement Root { get; private set; }
 
