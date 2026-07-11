@@ -64,7 +64,7 @@ namespace MCPForUnity.Editor.Tools
 
             string targetName = p.Get("target");
             if (!BuildTargetMapping.TryResolveBuildTarget(targetName, out var target))
-                return new ErrorResponse($"Unknown target '{targetName}'.");
+                return new ErrorResponse(BuildTargetMapping.GetUnknownBuildTargetMessage(targetName));
 
             var group = BuildTargetMapping.GetTargetGroup(target);
             if (!BuildPipeline.IsBuildTargetSupported(group, target))
@@ -225,7 +225,7 @@ namespace MCPForUnity.Editor.Tools
 
             // Switch platform
             if (!BuildTargetMapping.TryResolveBuildTarget(targetName, out var target))
-                return new ErrorResponse($"Unknown target '{targetName}'.");
+                return new ErrorResponse(BuildTargetMapping.GetUnknownBuildTargetMessage(targetName));
 
             var group = BuildTargetMapping.GetTargetGroup(target);
             if (!BuildPipeline.IsBuildTargetSupported(group, target))
@@ -448,7 +448,7 @@ namespace MCPForUnity.Editor.Tools
                 foreach (var t in targets)
                 {
                     if (!BuildTargetMapping.TryResolveBuildTarget(t, out var bt))
-                        return new ErrorResponse($"Unknown target '{t}' in batch.");
+                        return new ErrorResponse(BuildTargetMapping.GetUnknownBuildTargetMessage(t));
                     var btGroup = BuildTargetMapping.GetTargetGroup(bt);
                     if (!BuildPipeline.IsBuildTargetSupported(btGroup, bt))
                         return new ErrorResponse(
