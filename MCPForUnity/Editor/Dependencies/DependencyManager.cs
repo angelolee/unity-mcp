@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using MCPForUnity.Editor.Dependencies.Models;
-using MCPForUnity.Editor.Dependencies.PlatformDetectors;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Dependencies.Models;
+using com.tgs.mcpforunity.editor.Dependencies.PlatformDetectors;
+using com.tgs.mcpforunity.editor.Helpers;
 using UnityEditor;
 using UnityEngine;
 
-namespace MCPForUnity.Editor.Dependencies
+namespace com.tgs.mcpforunity.editor.Dependencies
 {
     /// <summary>
     /// Main orchestrator for dependency validation and management

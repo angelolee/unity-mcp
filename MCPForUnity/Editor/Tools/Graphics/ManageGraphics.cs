@@ -1,8 +1,8 @@
 using System;
 using Newtonsoft.Json.Linq;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 
-namespace MCPForUnity.Editor.Tools.Graphics
+namespace com.tgs.mcpforunity.editor.Tools.Graphics
 {
     [McpForUnityTool("manage_graphics", AutoRegister = false, Group = "core")]
     public static class ManageGraphics

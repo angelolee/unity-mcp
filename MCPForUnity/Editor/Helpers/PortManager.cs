@@ -5,12 +5,12 @@ using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
-using MCPForUnity.Editor.Constants;
+using com.tgs.mcpforunity.editor.Constants;
 using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
 
-namespace MCPForUnity.Editor.Helpers
+namespace com.tgs.mcpforunity.editor.Helpers
 {
     /// <summary>
     /// Manages dynamic port allocation and persistent storage for MCP for Unity

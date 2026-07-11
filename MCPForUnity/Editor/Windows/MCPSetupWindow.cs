@@ -1,12 +1,12 @@
 using System;
-using MCPForUnity.Editor.Dependencies;
-using MCPForUnity.Editor.Dependencies.Models;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Dependencies;
+using com.tgs.mcpforunity.editor.Dependencies.Models;
+using com.tgs.mcpforunity.editor.Helpers;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace MCPForUnity.Editor.Windows
+namespace com.tgs.mcpforunity.editor.Windows
 {
     /// <summary>
     /// Setup window for checking and guiding dependency installation

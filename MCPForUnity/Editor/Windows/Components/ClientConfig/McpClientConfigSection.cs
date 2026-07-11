@@ -5,17 +5,17 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using MCPForUnity.Editor.Clients;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Models;
-using MCPForUnity.Editor.Services;
-using MCPForUnity.Editor.Setup;
+using com.tgs.mcpforunity.editor.Clients;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Models;
+using com.tgs.mcpforunity.editor.Services;
+using com.tgs.mcpforunity.editor.Setup;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace MCPForUnity.Editor.Windows.Components.ClientConfig
+namespace com.tgs.mcpforunity.editor.Windows.Components.ClientConfig
 {
     /// <summary>
     /// Controller for the Client Configuration section of the MCP For Unity editor window.

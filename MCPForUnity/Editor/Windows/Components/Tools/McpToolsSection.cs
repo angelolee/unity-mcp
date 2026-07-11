@@ -2,18 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MCPForUnity.Editor.Clients;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Models;
-using MCPForUnity.Editor.Services;
-using MCPForUnity.Editor.Services.Transport;
-using MCPForUnity.Editor.Tools;
+using com.tgs.mcpforunity.editor.Clients;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Models;
+using com.tgs.mcpforunity.editor.Services;
+using com.tgs.mcpforunity.editor.Services.Transport;
+using com.tgs.mcpforunity.editor.Tools;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace MCPForUnity.Editor.Windows.Components.Tools
+namespace com.tgs.mcpforunity.editor.Windows.Components.Tools
 {
     /// <summary>
     /// Controller for the Tools section inside the MCP For Unity editor window.

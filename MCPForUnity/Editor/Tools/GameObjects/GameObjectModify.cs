@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -12,7 +12,7 @@ using PrefabStageUtility = UnityEditor.Experimental.SceneManagement.PrefabStageU
 using UnityEditorInternal;
 using UnityEngine;
 
-namespace MCPForUnity.Editor.Tools.GameObjects
+namespace com.tgs.mcpforunity.editor.Tools.GameObjects
 {
     internal static class GameObjectModify
     {

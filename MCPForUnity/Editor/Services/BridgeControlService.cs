@@ -1,13 +1,13 @@
 
 using System;
 using System.Threading.Tasks;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Services.Transport;
-using MCPForUnity.Editor.Services.Transport.Transports;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Services.Transport;
+using com.tgs.mcpforunity.editor.Services.Transport.Transports;
 using UnityEditor;
 
-namespace MCPForUnity.Editor.Services
+namespace com.tgs.mcpforunity.editor.Services
 {
     /// <summary>
     /// Bridges the editor UI to the active transport (HTTP with WebSocket push, or stdio).

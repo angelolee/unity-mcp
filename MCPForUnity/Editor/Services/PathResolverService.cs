@@ -4,12 +4,12 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Helpers;
 using UnityEditor;
 using UnityEngine;
 
-namespace MCPForUnity.Editor.Services
+namespace com.tgs.mcpforunity.editor.Services
 {
     /// <summary>
     /// Implementation of path resolver service with override support

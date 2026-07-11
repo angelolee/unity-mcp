@@ -1,9 +1,9 @@
 using System;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Services;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Services;
 using Newtonsoft.Json.Linq;
 
-namespace MCPForUnity.Editor.Tools
+namespace com.tgs.mcpforunity.editor.Tools
 {
     /// <summary>
     /// Poll a previously started async test job by job_id.

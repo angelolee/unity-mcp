@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Models;
-using MCPForUnity.Editor.Services;
-using MCPForUnity.Editor.Tools;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Models;
+using com.tgs.mcpforunity.editor.Services;
+using com.tgs.mcpforunity.editor.Tools;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 
-namespace MCPForUnity.Editor.Services.Transport
+namespace com.tgs.mcpforunity.editor.Services.Transport
 {
     /// <summary>
     /// Centralised command execution pipeline shared by all transport implementations.

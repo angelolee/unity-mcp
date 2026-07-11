@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 
-namespace MCPForUnity.Editor.Tools.Vfx
+namespace com.tgs.mcpforunity.editor.Tools.Vfx
 {
     internal static class ParticleWrite
     {

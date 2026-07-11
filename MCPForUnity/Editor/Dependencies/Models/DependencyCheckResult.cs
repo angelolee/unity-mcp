@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MCPForUnity.Editor.Dependencies.Models
+namespace com.tgs.mcpforunity.editor.Dependencies.Models
 {
     /// <summary>
     /// Result of a comprehensive dependency check

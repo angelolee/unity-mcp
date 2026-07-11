@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace MCPForUnity.Editor.Services.Server
+namespace com.tgs.mcpforunity.editor.Services.Server
 {
     /// <summary>
     /// Interface for platform-specific process inspection operations.

@@ -4,9 +4,9 @@ using System.Linq;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEditor.Build;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 
-namespace MCPForUnity.Editor.Tools.Build
+namespace com.tgs.mcpforunity.editor.Tools.Build
 {
     public static class BuildRunner
     {

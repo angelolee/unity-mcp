@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 
-namespace MCPForUnity.Editor.Tools.Build
+namespace com.tgs.mcpforunity.editor.Tools.Build
 {
     public enum BuildJobState
     {

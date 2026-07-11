@@ -1,13 +1,14 @@
 {
-    "name": "MCPForUnity.Editor",
-    "rootNamespace": "MCPForUnity.Editor",
+    "name": "com.tgs.mcp-for-unity.editor",
+    "rootNamespace": "com.tgs.mcpforunity.editor",
     "references": [
-        "MCPForUnity.Runtime"
+        "com.tgs.mcp-for-unity"
     ],
     "includePlatforms": [
         "Editor"
     ],
     "excludePlatforms": [],
+    "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
         "Newtonsoft.Json.dll"

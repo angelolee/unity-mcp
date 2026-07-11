@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -10,7 +10,7 @@ using Unity.Profiling.LowLevel.Unsafe;
 using UnityEngine.Profiling;
 using UProfiler = UnityEngine.Profiling.Profiler;
 
-namespace MCPForUnity.Editor.Tools.Graphics
+namespace com.tgs.mcpforunity.editor.Tools.Graphics
 {
     internal static class RenderingStatsOps
     {

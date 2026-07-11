@@ -1,11 +1,11 @@
 using System;
-using MCPForUnity.Editor.Constants;
+using com.tgs.mcpforunity.editor.Constants;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace MCPForUnity.Editor.Windows.Components.Validation
+namespace com.tgs.mcpforunity.editor.Windows.Components.Validation
 {
     /// <summary>
     /// Controller for the Script Validation section.

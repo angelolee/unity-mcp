@@ -1,6 +1,6 @@
-using MCPForUnity.Editor.Models;
+using com.tgs.mcpforunity.editor.Models;
 
-namespace MCPForUnity.Editor.Clients
+namespace com.tgs.mcpforunity.editor.Clients
 {
     /// <summary>
     /// Contract for MCP client configurators. Each client is responsible for

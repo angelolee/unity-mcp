@@ -1,10 +1,10 @@
 using System;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace MCPForUnity.Editor.Helpers
+namespace com.tgs.mcpforunity.editor.Helpers
 {
     /// <summary>
     /// Resolves Unity Objects by instruction (handles GameObjects, Components, Assets).

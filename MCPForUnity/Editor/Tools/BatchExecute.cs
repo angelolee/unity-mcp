@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Services;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Services;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 
-namespace MCPForUnity.Editor.Tools
+namespace com.tgs.mcpforunity.editor.Tools
 {
     /// <summary>
     /// Executes multiple MCP commands within a single Unity-side handler. Commands are executed sequentially

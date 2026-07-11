@@ -1,17 +1,17 @@
 using System;
 using System.Threading.Tasks;
-using MCPForUnity.Editor.Clients;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Models;
-using MCPForUnity.Editor.Services;
-using MCPForUnity.Editor.Services.Transport;
+using com.tgs.mcpforunity.editor.Clients;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Models;
+using com.tgs.mcpforunity.editor.Services;
+using com.tgs.mcpforunity.editor.Services.Transport;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace MCPForUnity.Editor.Windows.Components.Connection
+namespace com.tgs.mcpforunity.editor.Windows.Components.Connection
 {
     /// <summary>
     /// Controller for the Connection section of the MCP For Unity editor window.

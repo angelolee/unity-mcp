@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Tools;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Tools;
 using Newtonsoft.Json.Linq;
 using UnityEditor.SceneManagement;
 #if !UNITY_2021_2_OR_NEWER
@@ -11,9 +11,9 @@ using PrefabStageUtility = UnityEditor.Experimental.SceneManagement.PrefabStageU
 #endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using MCPForUnity.Runtime.Helpers;
+using com.tgs.mcpforunity.Helpers;
 
-namespace MCPForUnity.Editor.Tools.GameObjects
+namespace com.tgs.mcpforunity.editor.Tools.GameObjects
 {
     internal static class ManageGameObjectCommon
     {

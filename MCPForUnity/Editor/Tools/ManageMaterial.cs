@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
-using MCPForUnity.Runtime.Helpers;
+using com.tgs.mcpforunity.Helpers;
 
-namespace MCPForUnity.Editor.Tools
+namespace com.tgs.mcpforunity.editor.Tools
 {
     [McpForUnityTool("manage_material", AutoRegister = false)]
     public static class ManageMaterial

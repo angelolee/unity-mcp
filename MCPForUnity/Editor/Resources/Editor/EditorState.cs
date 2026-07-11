@@ -1,9 +1,9 @@
 using System;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Services;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Services;
 using Newtonsoft.Json.Linq;
 
-namespace MCPForUnity.Editor.Resources.Editor
+namespace com.tgs.mcpforunity.editor.Resources.Editor
 {
     /// <summary>
     /// Provides dynamic editor state information that changes frequently.

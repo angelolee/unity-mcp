@@ -1,7 +1,7 @@
 using System;
 using UObject = UnityEngine.Object;
 
-namespace MCPForUnity.Runtime.Helpers
+namespace com.tgs.mcpforunity.Helpers
 {
     /// <summary>
     /// Version-compatible wrappers for the Object.FindObjectsOfType / FindObjectsByType family,

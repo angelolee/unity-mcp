@@ -1,8 +1,8 @@
 using System;
-using MCPForUnity.Editor.Constants;
+using com.tgs.mcpforunity.editor.Constants;
 using UnityEditor;
 
-namespace MCPForUnity.Editor.Services
+namespace com.tgs.mcpforunity.editor.Services
 {
     /// <summary>
     /// Centralized cache for frequently-read EditorPrefs values.

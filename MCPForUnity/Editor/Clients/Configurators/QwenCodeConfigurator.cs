@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using MCPForUnity.Editor.Models;
+using com.tgs.mcpforunity.editor.Models;
 
-namespace MCPForUnity.Editor.Clients.Configurators
+namespace com.tgs.mcpforunity.editor.Clients.Configurators
 {
     /// <summary>
     /// Qwen Code MCP client configurator.

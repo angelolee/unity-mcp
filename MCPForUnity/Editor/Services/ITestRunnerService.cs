@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEditor.TestTools.TestRunner.Api;
 
-namespace MCPForUnity.Editor.Services
+namespace com.tgs.mcpforunity.editor.Services
 {
     /// <summary>
     /// Options for filtering which tests to run.

@@ -1,9 +1,9 @@
 using System;
 using System.IO;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 using UnityEngine;
 
-namespace MCPForUnity.Editor.Services.Server
+namespace com.tgs.mcpforunity.editor.Services.Server
 {
     /// <summary>
     /// Launches commands in platform-specific terminal windows.

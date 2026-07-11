@@ -1,4 +1,4 @@
-namespace MCPForUnity.Editor.Services
+namespace com.tgs.mcpforunity.editor.Services
 {
     /// <summary>
     /// Service for checking package updates and version information

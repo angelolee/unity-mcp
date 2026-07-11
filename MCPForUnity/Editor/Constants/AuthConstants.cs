@@ -1,4 +1,4 @@
-namespace MCPForUnity.Editor.Constants
+namespace com.tgs.mcpforunity.editor.Constants
 {
     /// <summary>
     /// Protocol-level constants for API key authentication.

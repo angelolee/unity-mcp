@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace MCPForUnity.Editor.Helpers
+namespace com.tgs.mcpforunity.editor.Helpers
 {
     /// <summary>
     /// Standard pagination request for all paginated tool operations.

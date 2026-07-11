@@ -1,14 +1,14 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Services;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Services;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace MCPForUnity.Editor.Windows.Components.Advanced
+namespace com.tgs.mcpforunity.editor.Windows.Components.Advanced
 {
     /// <summary>
     /// Controller for the Advanced Settings section.

@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using Newtonsoft.Json.Linq;
 
-namespace MCPForUnity.Editor.Helpers
+namespace com.tgs.mcpforunity.editor.Helpers
 {
     /// <summary>
     /// Utility class for coercing JSON parameter values to strongly-typed values.

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -12,9 +12,9 @@ using PrefabStage = UnityEditor.Experimental.SceneManagement.PrefabStage;
 #endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using MCPForUnity.Runtime.Helpers;
+using com.tgs.mcpforunity.Helpers;
 
-namespace MCPForUnity.Editor.Tools.Prefabs
+namespace com.tgs.mcpforunity.editor.Tools.Prefabs
 {
     [McpForUnityTool("manage_prefabs", AutoRegister = false)]
     /// <summary>

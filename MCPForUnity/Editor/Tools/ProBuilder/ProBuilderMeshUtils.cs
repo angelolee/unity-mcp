@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 using UnityEditor;
 using UnityEngine;
 
-namespace MCPForUnity.Editor.Tools.ProBuilder
+namespace com.tgs.mcpforunity.editor.Tools.ProBuilder
 {
     internal static class ProBuilderMeshUtils
     {

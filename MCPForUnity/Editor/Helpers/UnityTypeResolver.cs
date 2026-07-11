@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEditor.Compilation;
 #endif
 
-namespace MCPForUnity.Editor.Helpers
+namespace com.tgs.mcpforunity.editor.Helpers
 {
     /// <summary>
     /// Unified type resolution for Unity types (Components, ScriptableObjects, etc.).

@@ -1,9 +1,9 @@
-using MCPForUnity.Editor.Setup;
-using MCPForUnity.Editor.Windows;
+using com.tgs.mcpforunity.editor.Setup;
+using com.tgs.mcpforunity.editor.Windows;
 using UnityEditor;
 using UnityEngine;
 
-namespace MCPForUnity.Editor.MenuItems
+namespace com.tgs.mcpforunity.editor.MenuItems
 {
     public static class MCPForUnityMenu
     {

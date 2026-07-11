@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
-using MCPForUnity.Runtime.Helpers;
+using com.tgs.mcpforunity.Helpers;
 
-namespace MCPForUnity.Editor.Tools.Graphics
+namespace com.tgs.mcpforunity.editor.Tools.Graphics
 {
     internal static class VolumeOps
     {

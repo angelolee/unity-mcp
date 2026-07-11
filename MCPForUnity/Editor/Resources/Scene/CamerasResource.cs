@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Tools.Cameras;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Tools.Cameras;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-namespace MCPForUnity.Editor.Resources.Scene
+namespace com.tgs.mcpforunity.editor.Resources.Scene
 {
     [McpForUnityResource("get_cameras")]
     public static class CamerasResource

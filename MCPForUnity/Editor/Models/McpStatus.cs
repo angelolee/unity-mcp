@@ -1,4 +1,4 @@
-namespace MCPForUnity.Editor.Models
+namespace com.tgs.mcpforunity.editor.Models
 {
     // Enum representing the various status states for MCP clients
     public enum McpStatus

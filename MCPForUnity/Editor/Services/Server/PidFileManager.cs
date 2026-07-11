@@ -4,11 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using MCPForUnity.Editor.Constants;
+using com.tgs.mcpforunity.editor.Constants;
 using UnityEditor;
 using UnityEngine;
 
-namespace MCPForUnity.Editor.Services.Server
+namespace com.tgs.mcpforunity.editor.Services.Server
 {
     /// <summary>
     /// Manages PID files and handshake state for the local HTTP server.

@@ -1,8 +1,8 @@
 using System;
 using Newtonsoft.Json.Linq;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 
-namespace MCPForUnity.Editor.Tools.Physics
+namespace com.tgs.mcpforunity.editor.Tools.Physics
 {
     [McpForUnityTool("manage_physics", AutoRegister = false, Group = "core")]
     public static class ManagePhysics

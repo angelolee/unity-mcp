@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-namespace MCPForUnity.Editor.Resources.Project
+namespace com.tgs.mcpforunity.editor.Resources.Project
 {
     /// <summary>
     /// Provides dictionary of layer indices to layer names.

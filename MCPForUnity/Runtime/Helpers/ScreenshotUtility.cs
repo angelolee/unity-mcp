@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
-namespace MCPForUnity.Runtime.Helpers
+namespace com.tgs.mcpforunity.Helpers
 //The reason for having another Runtime Utilities in additional to Editor Utilities is to avoid Editor-only dependencies in this runtime code.
 {
     public readonly struct ScreenshotCaptureResult

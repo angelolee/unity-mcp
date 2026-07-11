@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace MCPForUnity.Editor.Services.Transport
+namespace com.tgs.mcpforunity.editor.Services.Transport
 {
     /// <summary>
     /// Abstraction for MCP transport implementations (e.g. WebSocket push, stdio).

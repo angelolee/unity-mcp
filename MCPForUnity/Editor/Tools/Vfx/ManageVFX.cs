@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 using UnityEngine;
 using UnityEditor;
 
@@ -10,7 +10,7 @@ using UnityEditor;
 using UnityEngine.VFX;
 #endif
 
-namespace MCPForUnity.Editor.Tools.Vfx
+namespace com.tgs.mcpforunity.editor.Tools.Vfx
 {
     /// <summary>
     /// Tool for managing Unity VFX components:

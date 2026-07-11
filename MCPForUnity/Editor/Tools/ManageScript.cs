@@ -6,8 +6,8 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Helpers;
 using System.Threading;
 using System.Security.Cryptography;
 
@@ -22,7 +22,7 @@ using UnityEditor.Compilation;
 #endif
 
 
-namespace MCPForUnity.Editor.Tools
+namespace com.tgs.mcpforunity.editor.Tools
 {
     /// <summary>
     /// Handles CRUD operations for C# scripts within the Unity project.

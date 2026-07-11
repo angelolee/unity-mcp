@@ -1,11 +1,11 @@
 #nullable disable
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
-using MCPForUnity.Runtime.Helpers;
+using com.tgs.mcpforunity.Helpers;
 
-namespace MCPForUnity.Editor.Tools.GameObjects
+namespace com.tgs.mcpforunity.editor.Tools.GameObjects
 {
     internal static class GameObjectLookAt
     {

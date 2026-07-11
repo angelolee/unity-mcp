@@ -1,6 +1,6 @@
 using System;
 
-namespace MCPForUnity.Editor.Services
+namespace com.tgs.mcpforunity.editor.Services
 {
     public interface IPackageDeploymentService
     {

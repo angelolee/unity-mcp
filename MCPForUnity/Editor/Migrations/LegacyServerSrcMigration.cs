@@ -1,11 +1,11 @@
 using System;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Services;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Services;
 using UnityEditor;
 using UnityEngine;
 
-namespace MCPForUnity.Editor.Migrations
+namespace com.tgs.mcpforunity.editor.Migrations
 {
     /// <summary>
     /// Detects legacy embedded-server preferences and migrates configs to the new uvx/stdio path once.

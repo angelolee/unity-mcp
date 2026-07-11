@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Services;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Services;
 using UnityEditor;
 using UnityEngine.UIElements;
 
-namespace MCPForUnity.Editor.Windows.Components.Resources
+namespace com.tgs.mcpforunity.editor.Windows.Components.Resources
 {
     /// <summary>
     /// Controller for the Resources section inside the MCP For Unity editor window.

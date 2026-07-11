@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using MCPForUnity.Editor.Helpers; // For Response class
-using MCPForUnity.Runtime.Helpers; // For ScreenshotUtility
+using com.tgs.mcpforunity.editor.Helpers; // For Response class
+using com.tgs.mcpforunity.Helpers; // For ScreenshotUtility
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -13,7 +13,7 @@ using PrefabStageUtility = UnityEditor.Experimental.SceneManagement.PrefabStageU
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MCPForUnity.Editor.Tools
+namespace com.tgs.mcpforunity.editor.Tools
 {
     /// <summary>
     /// Handles scene management operations like loading, saving, creating, and querying hierarchy.

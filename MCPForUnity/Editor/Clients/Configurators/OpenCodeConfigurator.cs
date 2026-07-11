@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Models;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace MCPForUnity.Editor.Clients.Configurators
+namespace com.tgs.mcpforunity.editor.Clients.Configurators
 {
     /// <summary>
     /// Configurator for OpenCode (opencode.ai) - a Go-based terminal AI coding assistant.

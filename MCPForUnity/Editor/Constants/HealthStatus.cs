@@ -1,4 +1,4 @@
-namespace MCPForUnity.Editor.Constants
+namespace com.tgs.mcpforunity.editor.Constants
 {
     /// <summary>
     /// Constants for health check status values.

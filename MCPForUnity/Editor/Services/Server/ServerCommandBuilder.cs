@@ -1,13 +1,13 @@
 using System;
 using System.IO;
 using System.Linq;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Services;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Services;
 using UnityEditor;
 using UnityEngine;
 
-namespace MCPForUnity.Editor.Services.Server
+namespace com.tgs.mcpforunity.editor.Services.Server
 {
     /// <summary>
     /// Builds uvx/server command strings for starting the MCP HTTP server.

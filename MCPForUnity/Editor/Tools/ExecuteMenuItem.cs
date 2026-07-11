@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 
-namespace MCPForUnity.Editor.Tools
+namespace com.tgs.mcpforunity.editor.Tools
 {
     [McpForUnityTool("execute_menu_item", AutoRegister = false)]
     /// <summary>

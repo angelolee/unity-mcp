@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine.VFX;
 #endif
 
-namespace MCPForUnity.Editor.Tools.Vfx
+namespace com.tgs.mcpforunity.editor.Tools.Vfx
 {
     /// <summary>
     /// Playback control operations for VFX Graph (VisualEffect component).

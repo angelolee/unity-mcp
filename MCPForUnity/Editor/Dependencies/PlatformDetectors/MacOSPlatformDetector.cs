@@ -2,12 +2,12 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Dependencies.Models;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Services;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Dependencies.Models;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Services;
 
-namespace MCPForUnity.Editor.Dependencies.PlatformDetectors
+namespace com.tgs.mcpforunity.editor.Dependencies.PlatformDetectors
 {
     /// <summary>
     /// macOS-specific dependency detection

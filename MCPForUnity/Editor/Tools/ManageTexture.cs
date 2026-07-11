@@ -4,9 +4,9 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 
-namespace MCPForUnity.Editor.Tools
+namespace com.tgs.mcpforunity.editor.Tools
 {
     /// <summary>
     /// Handles procedural texture generation operations.
@@ -776,7 +776,7 @@ namespace MCPForUnity.Editor.Tools
 
         private static object SetImportSettings(JObject @params)
         {
-            var toolParams = new MCPForUnity.Editor.Helpers.ToolParams(@params);
+            var toolParams = new ToolParams(@params);
             var pathResult = toolParams.GetRequired("path", "'path' is required for set_import_settings.");
             if (!pathResult.IsSuccess)
                 return new ErrorResponse(pathResult.ErrorMessage);

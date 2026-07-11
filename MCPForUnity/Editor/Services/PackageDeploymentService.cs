@@ -1,12 +1,12 @@
 using System;
 using System.IO;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Helpers;
 using UnityEditor;
 using UnityEngine;
 using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 
-namespace MCPForUnity.Editor.Services
+namespace com.tgs.mcpforunity.editor.Services
 {
     /// <summary>
     /// Handles copying a local MCPForUnity folder into the current project's package location with backup/restore support.

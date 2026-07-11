@@ -9,9 +9,9 @@ using PrefabStageUtility = UnityEditor.Experimental.SceneManagement.PrefabStageU
 #endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using MCPForUnity.Runtime.Helpers;
+using com.tgs.mcpforunity.Helpers;
 
-namespace MCPForUnity.Editor.Helpers
+namespace com.tgs.mcpforunity.editor.Helpers
 {
     /// <summary>
     /// Utility class for finding and looking up GameObjects in the scene.

@@ -1,6 +1,6 @@
-using MCPForUnity.Editor.Dependencies.Models;
+using com.tgs.mcpforunity.editor.Dependencies.Models;
 
-namespace MCPForUnity.Editor.Dependencies.PlatformDetectors
+namespace com.tgs.mcpforunity.editor.Dependencies.PlatformDetectors
 {
     /// <summary>
     /// Interface for platform-specific dependency detection

@@ -1,7 +1,7 @@
 using System;
 using UnityEditor.TestTools.TestRunner.Api;
 
-namespace MCPForUnity.Editor.Services
+namespace com.tgs.mcpforunity.editor.Services
 {
     /// <summary>
     /// Thread-safe, minimal shared status for Unity Test Runner execution.

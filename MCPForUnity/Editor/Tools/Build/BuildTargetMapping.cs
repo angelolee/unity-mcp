@@ -1,6 +1,6 @@
 using UnityEditor;
 
-namespace MCPForUnity.Editor.Tools.Build
+namespace com.tgs.mcpforunity.editor.Tools.Build
 {
     public static class BuildTargetMapping
     {

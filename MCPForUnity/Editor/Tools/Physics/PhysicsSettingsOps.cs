@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 
-namespace MCPForUnity.Editor.Tools.Physics
+namespace com.tgs.mcpforunity.editor.Tools.Physics
 {
     internal static class PhysicsSettingsOps
     {

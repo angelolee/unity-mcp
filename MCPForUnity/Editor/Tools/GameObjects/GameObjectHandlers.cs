@@ -1,7 +1,7 @@
 #nullable disable
 using Newtonsoft.Json.Linq;
 
-namespace MCPForUnity.Editor.Tools.GameObjects
+namespace com.tgs.mcpforunity.editor.Tools.GameObjects
 {
     internal static class GameObjectHandlers
     {

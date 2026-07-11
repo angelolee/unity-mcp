@@ -1,9 +1,9 @@
 using System;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Tools.Graphics;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Tools.Graphics;
 using Newtonsoft.Json.Linq;
 
-namespace MCPForUnity.Editor.Resources.Scene
+namespace com.tgs.mcpforunity.editor.Resources.Scene
 {
     [McpForUnityResource("get_volumes")]
     public static class VolumesResource

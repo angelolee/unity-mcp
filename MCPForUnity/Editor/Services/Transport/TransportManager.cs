@@ -1,9 +1,9 @@
 using System;
 using System.Threading.Tasks;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Services.Transport.Transports;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Services.Transport.Transports;
 
-namespace MCPForUnity.Editor.Services.Transport
+namespace com.tgs.mcpforunity.editor.Services.Transport
 {
     /// <summary>
     /// Coordinates the active transport client and exposes lifecycle helpers.

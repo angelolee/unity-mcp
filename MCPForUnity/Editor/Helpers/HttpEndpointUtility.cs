@@ -1,11 +1,11 @@
 using System;
 using System.Net;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Models;
-using MCPForUnity.Editor.Services;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Models;
+using com.tgs.mcpforunity.editor.Services;
 using UnityEditor;
 
-namespace MCPForUnity.Editor.Helpers
+namespace com.tgs.mcpforunity.editor.Helpers
 {
     /// <summary>
     /// Helper methods for managing HTTP endpoint URLs used by the MCP bridge.

@@ -2,22 +2,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Services;
-using MCPForUnity.Editor.Windows.Components.Advanced;
-using MCPForUnity.Editor.Windows.Components.ClientConfig;
-using MCPForUnity.Editor.Windows.Components.Connection;
-using MCPForUnity.Editor.Windows.Components.Resources;
-using MCPForUnity.Editor.Windows.Components.Tools;
-using MCPForUnity.Editor.Setup;
-using MCPForUnity.Editor.Windows.Components.Validation;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Services;
+using com.tgs.mcpforunity.editor.Windows.Components.Advanced;
+using com.tgs.mcpforunity.editor.Windows.Components.ClientConfig;
+using com.tgs.mcpforunity.editor.Windows.Components.Connection;
+using com.tgs.mcpforunity.editor.Windows.Components.Resources;
+using com.tgs.mcpforunity.editor.Windows.Components.Tools;
+using com.tgs.mcpforunity.editor.Setup;
+using com.tgs.mcpforunity.editor.Windows.Components.Validation;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace MCPForUnity.Editor.Windows
+namespace com.tgs.mcpforunity.editor.Windows
 {
     public class MCPForUnityEditorWindow : EditorWindow
     {
@@ -302,7 +302,7 @@ namespace MCPForUnity.Editor.Windows
                 advancedSection.OnPackageDeployed += () =>
                 {
                     UpdateVersionLabel();
-                    QueueUpdateCheck();
+                    // QueueUpdateCheck();
                 };
                 // Wire up health status updates from Connection to Advanced
                 connectionSection?.SetHealthStatusUpdateCallback((isHealthy, statusText) =>
@@ -368,7 +368,7 @@ namespace MCPForUnity.Editor.Windows
 
             // Initial updates
             RefreshAllData();
-            QueueUpdateCheck();
+            // QueueUpdateCheck();
         }
 
         private void UpdateVersionLabel()

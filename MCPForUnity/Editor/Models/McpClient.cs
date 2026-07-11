@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace MCPForUnity.Editor.Models
+namespace com.tgs.mcpforunity.editor.Models
 {
     public class McpClient
     {

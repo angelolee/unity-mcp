@@ -1,13 +1,13 @@
 using System;
 using System.IO;
 using System.Reflection;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
 using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 
-namespace MCPForUnity.Editor.Resources.Project
+namespace com.tgs.mcpforunity.editor.Resources.Project
 {
     /// <summary>
     /// Provides static project configuration information.
@@ -38,7 +38,7 @@ namespace MCPForUnity.Editor.Resources.Project
                         textmeshpro = IsPackageInstalled("com.unity.textmeshpro"),
                         inputsystem = IsPackageInstalled("com.unity.inputsystem"),
                         uiToolkit = true,
-                        screenCapture = MCPForUnity.Runtime.Helpers.ScreenshotUtility.IsScreenCaptureModuleAvailable,
+                        screenCapture = com.tgs.mcpforunity.Helpers.ScreenshotUtility.IsScreenCaptureModuleAvailable,
                     }
                 };
 

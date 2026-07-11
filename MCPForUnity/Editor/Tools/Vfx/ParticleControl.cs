@@ -2,10 +2,10 @@ using System;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Runtime.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.Helpers;
 
-namespace MCPForUnity.Editor.Tools.Vfx
+namespace com.tgs.mcpforunity.editor.Tools.Vfx
 {
     internal static class ParticleControl
     {

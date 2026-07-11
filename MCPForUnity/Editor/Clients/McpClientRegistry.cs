@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 using UnityEditor;
 using UnityEngine;
 
-namespace MCPForUnity.Editor.Clients
+namespace com.tgs.mcpforunity.editor.Clients
 {
     /// <summary>
     /// Central registry that auto-discovers configurators via TypeCache.

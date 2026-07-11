@@ -5,16 +5,16 @@ using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Services;
-using MCPForUnity.Editor.Services.Transport;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Services;
+using com.tgs.mcpforunity.editor.Services.Transport;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace MCPForUnity.Editor.Services.Transport.Transports
+namespace com.tgs.mcpforunity.editor.Services.Transport.Transports
 {
     /// <summary>
     /// Maintains a persistent WebSocket connection to the MCP server plugin hub.

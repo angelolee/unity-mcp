@@ -1,9 +1,9 @@
 using System;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 using Newtonsoft.Json.Linq;
 using UnityEditorInternal;
 
-namespace MCPForUnity.Editor.Resources.Project
+namespace com.tgs.mcpforunity.editor.Resources.Project
 {
     /// <summary>
     /// Provides list of all tags in the project.

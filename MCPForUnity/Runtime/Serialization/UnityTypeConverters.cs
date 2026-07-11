@@ -2,12 +2,12 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using UnityEngine;
-using MCPForUnity.Runtime.Helpers;
+using com.tgs.mcpforunity.Helpers;
 #if UNITY_EDITOR
 using UnityEditor; // Required for AssetDatabase and EditorUtility
 #endif
 
-namespace MCPForUnity.Runtime.Serialization
+namespace com.tgs.mcpforunity.Serialization
 {
     public class Vector3Converter : JsonConverter<Vector3>
     {

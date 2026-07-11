@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using MCPForUnity.Editor.Clients;
-using MCPForUnity.Editor.Models;
+using com.tgs.mcpforunity.editor.Clients;
+using com.tgs.mcpforunity.editor.Models;
 
-namespace MCPForUnity.Editor.Services
+namespace com.tgs.mcpforunity.editor.Services
 {
     /// <summary>
     /// Service for configuring MCP clients

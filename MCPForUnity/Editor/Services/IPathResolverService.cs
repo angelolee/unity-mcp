@@ -1,4 +1,4 @@
-namespace MCPForUnity.Editor.Services
+namespace com.tgs.mcpforunity.editor.Services
 {
     /// <summary>
     /// Service for resolving paths to required tools and supporting user overrides

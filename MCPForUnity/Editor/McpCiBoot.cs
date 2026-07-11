@@ -1,9 +1,9 @@
 using System;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Services.Transport.Transports;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Services.Transport.Transports;
 using UnityEditor;
 
-namespace MCPForUnity.Editor
+namespace com.tgs.mcpforunity.editor
 {
     public static class McpCiBoot
     {

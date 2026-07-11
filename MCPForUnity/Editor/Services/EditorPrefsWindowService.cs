@@ -1,8 +1,8 @@
 using System;
-using MCPForUnity.Editor.Windows;
+using com.tgs.mcpforunity.editor.Windows;
 using UnityEditor;
 
-namespace MCPForUnity.Editor.Services
+namespace com.tgs.mcpforunity.editor.Services
 {
     /// <summary>
     /// Service for managing the EditorPrefs window

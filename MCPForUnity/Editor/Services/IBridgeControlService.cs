@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using MCPForUnity.Editor.Services.Transport;
+using com.tgs.mcpforunity.editor.Services.Transport;
 
-namespace MCPForUnity.Editor.Services
+namespace com.tgs.mcpforunity.editor.Services
 {
     /// <summary>
     /// Service for controlling the MCP for Unity Bridge connection

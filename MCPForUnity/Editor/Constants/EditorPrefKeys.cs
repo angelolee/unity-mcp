@@ -1,4 +1,4 @@
-namespace MCPForUnity.Editor.Constants
+namespace com.tgs.mcpforunity.editor.Constants
 {
     /// <summary>
     /// Centralized list of EditorPrefs keys used by the MCP for Unity package.

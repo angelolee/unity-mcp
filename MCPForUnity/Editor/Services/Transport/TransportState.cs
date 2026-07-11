@@ -1,4 +1,4 @@
-namespace MCPForUnity.Editor.Services.Transport
+namespace com.tgs.mcpforunity.editor.Services.Transport
 {
     /// <summary>
     /// Lightweight snapshot of a transport's runtime status for editor UI and diagnostics.

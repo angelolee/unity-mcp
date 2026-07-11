@@ -1,13 +1,13 @@
 using System;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Dependencies;
-using MCPForUnity.Editor.Dependencies.Models;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Windows;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Dependencies;
+using com.tgs.mcpforunity.editor.Dependencies.Models;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Windows;
 using UnityEditor;
 using UnityEngine;
 
-namespace MCPForUnity.Editor.Setup
+namespace com.tgs.mcpforunity.editor.Setup
 {
     /// <summary>
     /// Handles automatic triggering of the MCP setup window and exposes menu entry points

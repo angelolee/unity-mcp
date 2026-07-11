@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MCPForUnity.Editor.Clients;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Models;
+using com.tgs.mcpforunity.editor.Clients;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Models;
 
-namespace MCPForUnity.Editor.Services
+namespace com.tgs.mcpforunity.editor.Services
 {
     /// <summary>
     /// Implementation of client configuration service

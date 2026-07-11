@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Runtime.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.Helpers;
 
-namespace MCPForUnity.Editor.Tools.Physics
+namespace com.tgs.mcpforunity.editor.Tools.Physics
 {
     internal static class PhysicsQueryOps
     {

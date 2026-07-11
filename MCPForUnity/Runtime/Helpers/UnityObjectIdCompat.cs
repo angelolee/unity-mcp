@@ -4,7 +4,7 @@ using System.Reflection;
 using UnityEditor;
 #endif
 
-namespace MCPForUnity.Runtime.Helpers
+namespace com.tgs.mcpforunity.Helpers
 {
     /// <summary>
     /// Version-gated wrappers for the InstanceID ↔ EntityId migration introduced in Unity 6.5

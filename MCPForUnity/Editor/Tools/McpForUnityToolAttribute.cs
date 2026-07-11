@@ -1,6 +1,6 @@
 using System;
 
-namespace MCPForUnity.Editor.Tools
+namespace com.tgs.mcpforunity.editor.Tools
 {
     /// <summary>
     /// Marks a class as an MCP tool handler

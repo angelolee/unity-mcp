@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 
-namespace MCPForUnity.Editor.Tools.Build
+namespace com.tgs.mcpforunity.editor.Tools.Build
 {
     public static class BuildSettingsHelper
     {

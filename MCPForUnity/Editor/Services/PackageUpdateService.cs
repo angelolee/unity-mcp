@@ -1,13 +1,13 @@
 using System;
 using System.Net;
 using System.Text.RegularExpressions;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Helpers;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 
-namespace MCPForUnity.Editor.Services
+namespace com.tgs.mcpforunity.editor.Services
 {
     /// <summary>
     /// Service for checking package updates from GitHub or Asset Store metadata
