@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using NUnit.Framework;
+using UnityEditor;
 using MCPForUnity.Editor.Services;
 
 namespace MCPForUnityTests.Editor.Services
@@ -100,6 +101,11 @@ namespace MCPForUnityTests.Editor.Services
         [Test]
         public void GetJob_WithDefaultTimeout_AutoFailsAfter15Seconds()
         {
+            if (EditorApplication.isCompiling || EditorApplication.isUpdating)
+            {
+                Assert.Ignore("Default init timeout is intentionally deferred while Unity is compiling or updating.");
+            }
+
             // Arrange: insert a job with InitTimeoutMs=0 (use default) and start time 20s ago
             var jobs = _jobsField.GetValue(null) as System.Collections.IDictionary;
             long now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();

@@ -1,3 +1,4 @@
+#if UNITY_2021_1_OR_NEWER
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
@@ -245,3 +246,4 @@ namespace MCPForUnityTests.Editor.Tools
         }
     }
 }
+#endif

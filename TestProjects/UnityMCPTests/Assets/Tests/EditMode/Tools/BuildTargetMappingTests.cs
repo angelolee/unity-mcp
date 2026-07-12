@@ -24,6 +24,7 @@ namespace MCPForUnity.Tests.EditMode.Tools
             Assert.IsFalse(BuildTargetMapping.TryResolveBuildTarget("5", out _));
         }
 
+#if UNITY_2021_2_OR_NEWER
         [Test]
         public void TryResolveNamedBuildTarget_UnknownTargetListsOnlyAvailableTargets()
         {
@@ -63,5 +64,21 @@ namespace MCPForUnity.Tests.EditMode.Tools
                 StringAssert.Contains("VisionOS build target is not available", error);
             }
         }
+#else
+        [Test]
+        public void TryResolveBuildTargetGroup_UsesLegacyBuildTargetGroup()
+        {
+            string error = BuildTargetMapping.TryResolveBuildTargetGroup("windows64", out BuildTargetGroup group);
+
+            Assert.IsNull(error);
+            Assert.AreEqual(BuildTargetGroup.Standalone, group);
+        }
+
+        [Test]
+        public void ResolveSubtarget_ReturnsZeroWhenStandaloneBuildSubtargetIsUnavailable()
+        {
+            Assert.AreEqual(0, BuildTargetMapping.ResolveSubtarget("server"));
+        }
+#endif
     }
 }

@@ -16,6 +16,9 @@ namespace MCPForUnityTests.Editor.Services
     /// After an abrupt client disconnect, a new client must be able to connect and
     /// have its commands processed — this was broken by the zombie state bug (#785).
     /// </summary>
+#if !UNITY_2021_1_OR_NEWER
+    [Ignore("Unity 2020.3 emits native TLS allocator asserts during live stdio reconnect churn.")]
+#endif
     [TestFixture]
     public class StdioBridgeReconnectTests
     {

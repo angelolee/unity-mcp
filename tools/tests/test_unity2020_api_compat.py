@@ -38,3 +38,9 @@ def test_asset_generation_dropdown_uses_newer_ui_toolkit_apis_only_when_availabl
     assert "#if UNITY_2021_2_OR_NEWER" in content
     assert "formatDropdown.RegisterValueChangedCallback" in content
     assert "formatDropdown?.SetValueWithoutNotify" in content
+
+
+def test_ui_document_serialization_tests_require_unity_2021_1_or_newer() -> None:
+    content = source("TestProjects/UnityMCPTests/Assets/Tests/EditMode/Tools/UIDocumentSerializationTests.cs")
+
+    assert content.startswith("#if UNITY_2021_1_OR_NEWER\n")

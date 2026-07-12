@@ -1,3 +1,4 @@
+#if UNITY_2021_2_OR_NEWER
 using System.IO;
 using MCPForUnity.Editor.Tools.Prefabs;
 using Newtonsoft.Json.Linq;
@@ -249,3 +250,4 @@ namespace MCPForUnityTests.Editor.Tools
         }
     }
 }
+#endif

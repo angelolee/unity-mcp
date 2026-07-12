@@ -345,11 +345,17 @@ namespace MCPForUnity.Editor.Tools
             bool hasNetstandard = allPaths.Any(p =>
                 string.Equals(Path.GetFileNameWithoutExtension(p), "netstandard", StringComparison.OrdinalIgnoreCase));
 
-            if (!hasNetstandard)
-                return allPaths;
-
             return allPaths.Where(p =>
-                !_codedomDuplicateAssemblies.Contains(Path.GetFileNameWithoutExtension(p))).ToArray();
+                !IsCodeDomIncompatibleAssembly(p, hasNetstandard)).ToArray();
+        }
+
+        private static bool IsCodeDomIncompatibleAssembly(string path, bool hasNetstandard)
+        {
+            if (hasNetstandard && _codedomDuplicateAssemblies.Contains(Path.GetFileNameWithoutExtension(path)))
+                return true;
+
+            var normalized = path.Replace('\\', '/');
+            return normalized.IndexOf("/Plugins/Newtonsoft.Json Editor/", StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
         // ──────────────────── Shared helpers ────────────────────

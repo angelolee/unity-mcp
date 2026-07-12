@@ -5,7 +5,11 @@ import pytest
 
 
 ROOT = Path(__file__).resolve().parents[2]
-CS_FILES = tuple(sorted((ROOT / "MCPForUnity").rglob("*.cs")))
+CS_SOURCE_ROOTS = (
+    ROOT / "MCPForUnity",
+    ROOT / "TestProjects/UnityMCPTests/Assets/Tests",
+)
+CS_FILES = tuple(sorted(path for source_root in CS_SOURCE_ROOTS for path in source_root.rglob("*.cs")))
 
 FORBIDDEN = (
     ("target-typed new", re.compile(r"=\s*new\s*\((?![^)]*\)\s*\[)")),

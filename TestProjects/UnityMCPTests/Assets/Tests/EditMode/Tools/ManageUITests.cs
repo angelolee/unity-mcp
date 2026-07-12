@@ -274,6 +274,7 @@ namespace MCPForUnityTests.Editor.Tools
         }
 
         // ---- Create PanelSettings ----
+#if UNITY_2021_1_OR_NEWER
 
         [Test]
         public void CreatePanelSettings_CreatesAsset()
@@ -376,6 +377,7 @@ namespace MCPForUnityTests.Editor.Tools
             Assert.IsFalse(result.Value<bool>("success"));
         }
 
+#endif
         // ---- Get Visual Tree ----
 
         [Test]
@@ -524,6 +526,7 @@ namespace MCPForUnityTests.Editor.Tools
         }
 
         // ---- Detach UIDocument ----
+#if UNITY_2021_1_OR_NEWER
 
         [Test]
         public void DetachUIDocument_RemovesComponent()
@@ -595,6 +598,7 @@ namespace MCPForUnityTests.Editor.Tools
             Assert.IsFalse(result.Value<bool>("success"));
         }
 
+#endif
         // ---- Modify visual element ----
 
         [Test]

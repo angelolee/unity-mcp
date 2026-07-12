@@ -116,7 +116,26 @@ namespace MCPForUnity.Editor.Services.Transport
             };
         }
 
-        public bool IsRunning(TransportMode mode) => GetState(mode).IsConnected;
+        public bool IsRunning(TransportMode mode)
+        {
+            IMcpTransportClient client = GetClient(mode);
+            if (client == null)
+            {
+                return false;
+            }
+
+            if (client.IsConnected)
+            {
+                return true;
+            }
+
+            if (GetState(mode).IsConnected)
+            {
+                UpdateState(mode, TransportState.Disconnected(client.TransportName));
+            }
+
+            return false;
+        }
 
         /// <summary>
         /// Synchronous teardown for shutdown/reload hooks where async awaits are not possible.

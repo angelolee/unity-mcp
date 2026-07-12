@@ -59,7 +59,7 @@ namespace MCPForUnityTests.Editor.Tools
             Assert.IsInstanceOf<ErrorResponse>(resultObj);
             var err = (ErrorResponse)resultObj;
             Assert.AreEqual(false, err.Success);
-            Assert.IsTrue(err.Error.Contains("Unknown test mode", StringComparison.OrdinalIgnoreCase));
+            Assert.IsTrue(err.Error.IndexOf("Unknown test mode", StringComparison.OrdinalIgnoreCase) >= 0);
         }
     }
 }

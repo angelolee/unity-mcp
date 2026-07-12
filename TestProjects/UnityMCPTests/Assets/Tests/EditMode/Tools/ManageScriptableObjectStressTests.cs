@@ -13,6 +13,7 @@ using MCPForUnityTests.Editor.Tools.Fixtures;
 using Debug = UnityEngine.Debug;
 using static MCPForUnityTests.Editor.TestUtilities;
 
+#if UNITY_2021_1_OR_NEWER
 namespace MCPForUnityTests.Editor.Tools
 {
     /// <summary>
@@ -30,6 +31,18 @@ namespace MCPForUnityTests.Editor.Tools
         private readonly List<string> _createdAssets = new List<string>();
         private string _matPath;
         private string _texPath;
+
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            DeleteTestRoot();
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            DeleteTestRoot();
+        }
 
         [UnitySetUp]
         public IEnumerator SetUp()
@@ -77,9 +90,16 @@ namespace MCPForUnityTests.Editor.Tools
                 AssetDatabase.DeleteAsset(_runRoot);
             }
 
-            // Clean up empty parent folders to avoid debris
             CleanupEmptyParentFolders(TempRoot);
 
+            AssetDatabase.Refresh();
+        }
+
+        private static void DeleteTestRoot()
+        {
+            if (AssetDatabase.IsValidFolder(TempRoot))
+                AssetDatabase.DeleteAsset(TempRoot);
+            CleanupEmptyParentFolders(TempRoot);
             AssetDatabase.Refresh();
         }
 
@@ -525,8 +545,8 @@ namespace MCPForUnityTests.Editor.Tools
 
             // Type mismatch should fail gracefully with a clear error
             Assert.IsFalse(patchOk, "Setting int to string should fail");
-            Assert.IsTrue(message.Contains("int", StringComparison.OrdinalIgnoreCase) || 
-                          message.Contains("Expected", StringComparison.OrdinalIgnoreCase),
+            Assert.IsTrue(message.IndexOf("int", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                          message.IndexOf("Expected", StringComparison.OrdinalIgnoreCase) >= 0,
                           $"Error message should indicate type issue: {message}");
         }
 
@@ -1386,4 +1406,4 @@ namespace MCPForUnityTests.Editor.Tools
         #endregion
     }
 }
-
+#endif

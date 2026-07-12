@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using Newtonsoft.Json.Linq;
+using UnityEditor;
 using MCPForUnity.Editor.Tools;
 
 namespace MCPForUnityTests.Editor.Tools
@@ -7,6 +8,15 @@ namespace MCPForUnityTests.Editor.Tools
     [TestFixture]
     public class UnityReflectTests
     {
+        [SetUp]
+        public void SetUp()
+        {
+            if (EditorApplication.isCompiling || EditorApplication.isUpdating)
+            {
+                Assert.Ignore("UnityReflect cannot run while Unity is compiling or updating.");
+            }
+        }
+
         private static JObject Invoke(string action, JObject extraParams = null)
         {
             var p = extraParams ?? new JObject();

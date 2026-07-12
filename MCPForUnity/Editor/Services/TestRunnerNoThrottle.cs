@@ -36,6 +36,10 @@ namespace MCPForUnity.Editor.Services
         private const string SessionKey_PrevInteractionMode = "TestRunnerNoThrottle_PrevInteractionMode";
         private const string SessionKey_SettingsCaptured = "TestRunnerNoThrottle_SettingsCaptured";
 
+        private static readonly int[] PostRunConsoleClearFrames = { 1, 5, 15, 30, 60, 120 };
+        private static int _postRunConsoleClearFrame;
+        private static int _postRunConsoleClearIndex;
+
         // Keep reference to avoid GC and set HideFlags to avoid serialization issues
         private static TestRunnerApi _api;
 
@@ -114,6 +118,49 @@ namespace MCPForUnity.Editor.Services
             McpLog.Info("[TestRunnerNoThrottle] Restored Interaction Mode after test run.");
         }
 
+        private static bool ShouldClearConsoleAfterRun(bool isUnity2020, int failCount)
+        {
+            return isUnity2020 && failCount == 0;
+        }
+
+        private static void SchedulePostRunConsoleCleanup()
+        {
+            _postRunConsoleClearFrame = 0;
+            _postRunConsoleClearIndex = 0;
+            EditorApplication.update -= ClearConsoleDuringPostRunDrain;
+            EditorApplication.update += ClearConsoleDuringPostRunDrain;
+        }
+
+        private static void ClearConsoleDuringPostRunDrain()
+        {
+            if (_postRunConsoleClearIndex >= PostRunConsoleClearFrames.Length)
+            {
+                EditorApplication.update -= ClearConsoleDuringPostRunDrain;
+                return;
+            }
+
+            _postRunConsoleClearFrame++;
+            if (_postRunConsoleClearFrame < PostRunConsoleClearFrames[_postRunConsoleClearIndex])
+                return;
+
+            ClearConsole();
+            _postRunConsoleClearIndex++;
+        }
+
+        private static void ClearConsole()
+        {
+            try
+            {
+                var logEntriesType = Type.GetType("UnityEditor.LogEntries,UnityEditor.dll");
+                var clearMethod = logEntriesType?.GetMethod("Clear", BindingFlags.Static | BindingFlags.Public);
+                clearMethod?.Invoke(null, null);
+            }
+            catch
+            {
+                // Best-effort cleanup only; never let console cleanup affect test result handling.
+            }
+        }
+
         private static void ForceEditorToApplyInteractionPrefs()
         {
             try
@@ -141,6 +188,12 @@ namespace MCPForUnity.Editor.Services
             public void RunFinished(ITestResultAdaptor result)
             {
                 RestoreThrottling();
+#if !UNITY_2021_1_OR_NEWER
+                if (ShouldClearConsoleAfterRun(true, result?.FailCount ?? 0))
+                {
+                    SchedulePostRunConsoleCleanup();
+                }
+#endif
             }
 
             public void TestStarted(ITestAdaptor test) { }
