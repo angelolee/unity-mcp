@@ -50,7 +50,7 @@ Perform the merge on a dedicated `codex/` update branch. Resolve conflicts by be
 - retain existing port-specific fixes where the upstream implementation does not supersede them;
 - add or update tests for each non-mechanical adaptation.
 
-Do not merge the unrelated TGS repository history into the canonical port branch. TGS namespace, assembly-name, package-name, `required`, repository metadata, and `mcpServerVersion` changes belong only to `features/tgs-unity-2020-3`.
+Do not merge the unrelated TGS repository history into the canonical port branch. TGS namespace, assembly-name, package-name, `required`, and repository metadata changes belong only to `features/tgs-unity-2020-3`.
 
 ## TGS Distribution Branch
 
@@ -67,7 +67,7 @@ The TGS branch must preserve these downstream deltas:
 
 - package name and namespaces under `com.tgs.*`;
 - TGS assembly names;
-- independent package version plus `mcpServerVersion`;
+- a single `version` field, kept equal to the upstream release during every completed upstream integration; it also pins the Python server dependency;
 - `required` and repository metadata;
 - no automatic upstream package-update checks or UI notifications; synchronize through the documented branch merge flow instead;
 - TGS-specific runtime, editor, or CI behavior;

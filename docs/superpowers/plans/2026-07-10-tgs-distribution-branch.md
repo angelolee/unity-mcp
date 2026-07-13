@@ -93,7 +93,7 @@ Expected: one commit contains only `MCPForUnity/` identity, metadata, and downst
 
 **Interfaces:**
 - Consumes: a package root and source text.
-- Produces: `transform_text(path: Path, text: str, server_version: str | None = None) -> str`, `transform_package(package_root: Path, server_version: str) -> list[Path]`, and validation tests used after canonical merges.
+- Produces: `transform_text(path: Path, text: str) -> str`, `transform_package(package_root: Path) -> list[Path]`, and validation tests used after canonical merges.
 
 - [ ] **Step 1: Write failing transformation tests**
 
@@ -129,7 +129,7 @@ def test_transforms_assembly_definition_identity() -> None:
     assert result["references"] == ["com.tgs.mcp-for-unity"]
 
 
-def test_transforms_package_metadata_without_changing_server_version() -> None:
+def test_transforms_package_metadata_preserving_upstream_version() -> None:
     source = json.dumps({
         "name": "com.coplaydev.unity-mcp",
         "version": "10.0.0",
@@ -137,11 +137,11 @@ def test_transforms_package_metadata_without_changing_server_version() -> None:
         "dependencies": {},
     })
 
-    result = json.loads(transform_text(Path("package.json"), source, server_version="10.0.0"))
+    result = json.loads(transform_text(Path("package.json"), source))
 
     assert result["name"] == "com.tgs.mcp-for-unity"
-    assert result["version"] == "1.0.0"
-    assert result["mcpServerVersion"] == "10.0.0"
+    assert result["version"] == "10.0.0"
+    assert "mcpServerVersion" not in result
     assert result["required"] is False
     assert result["unity"] == "2020.3"
 ```
@@ -170,13 +170,10 @@ from pathlib import Path
 TEXT_SUFFIXES = {".cs", ".asmdef", ".uxml", ".uss", ".json", ".md"}
 
 
-def transform_text(path: Path, text: str, server_version: str | None = None) -> str:
+def transform_text(path: Path, text: str) -> str:
     if path.name == "package.json":
         package = json.loads(text)
-        resolved_server_version = server_version or package.get("mcpServerVersion", package["version"])
         package["name"] = "com.tgs.mcp-for-unity"
-        package["version"] = "1.0.0"
-        package["mcpServerVersion"] = resolved_server_version
         package["unity"] = "2020.3"
         package["required"] = False
         package["repository"] = {
@@ -204,13 +201,13 @@ def transform_text(path: Path, text: str, server_version: str | None = None) -> 
     return transformed
 
 
-def transform_package(package_root: Path, server_version: str) -> list[Path]:
+def transform_package(package_root: Path) -> list[Path]:
     changed = []
     for path in sorted(package_root.rglob("*")):
         if not path.is_file() or path.suffix not in TEXT_SUFFIXES:
             continue
         original = path.read_text(encoding="utf-8-sig")
-        transformed = transform_text(path.relative_to(package_root), original, server_version)
+        transformed = transform_text(path.relative_to(package_root), original)
         if transformed != original:
             path.write_text(transformed, encoding="utf-8")
             changed.append(path)
@@ -274,7 +271,7 @@ Expected: both commands print nothing.
 Run:
 
 ```bash
-python3 -c 'from pathlib import Path; from tools.tgs_identity import transform_package; print("\n".join(str(p) for p in transform_package(Path("MCPForUnity"), "10.0.0")))'
+python3 -c 'from pathlib import Path; from tools.tgs_identity import transform_package; print("\n".join(str(p) for p in transform_package(Path("MCPForUnity"))))'
 ```
 
 Expected: the command lists only files whose canonical identity was newly introduced by the merge.

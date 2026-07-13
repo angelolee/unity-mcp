@@ -27,7 +27,7 @@ def test_transforms_assembly_definition_identity() -> None:
     assert result["references"] == ["com.tgs.mcp-for-unity"]
 
 
-def test_transforms_package_metadata_without_changing_server_version() -> None:
+def test_transforms_package_metadata_preserving_upstream_version() -> None:
     source = json.dumps({
         "name": "com.coplaydev.unity-mcp",
         "version": "10.0.0",
@@ -35,10 +35,10 @@ def test_transforms_package_metadata_without_changing_server_version() -> None:
         "dependencies": {},
     })
 
-    result = json.loads(transform_text(Path("package.json"), source, server_version="10.0.0"))
+    result = json.loads(transform_text(Path("package.json"), source))
 
     assert result["name"] == "com.tgs.mcp-for-unity"
-    assert result["version"] == "1.0.0"
-    assert result["mcpServerVersion"] == "10.0.0"
+    assert result["version"] == "10.0.0"
+    assert "mcpServerVersion" not in result
     assert result["required"] is False
     assert result["unity"] == "2020.3"

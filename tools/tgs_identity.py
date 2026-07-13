@@ -7,13 +7,10 @@ from pathlib import Path
 TEXT_SUFFIXES = {".cs", ".asmdef", ".uxml", ".uss", ".json", ".md"}
 
 
-def transform_text(path: Path, text: str, server_version: str | None = None) -> str:
+def transform_text(path: Path, text: str) -> str:
     if path.name == "package.json":
         package = json.loads(text)
-        resolved_server_version = server_version or package.get("mcpServerVersion", package["version"])
         package["name"] = "com.tgs.mcp-for-unity"
-        package["version"] = "1.0.0"
-        package["mcpServerVersion"] = resolved_server_version
         package["unity"] = "2020.3"
         package["required"] = False
         package["repository"] = {
@@ -41,13 +38,13 @@ def transform_text(path: Path, text: str, server_version: str | None = None) -> 
     return transformed
 
 
-def transform_package(package_root: Path, server_version: str) -> list[Path]:
+def transform_package(package_root: Path) -> list[Path]:
     changed = []
     for path in sorted(package_root.rglob("*")):
         if not path.is_file() or path.suffix not in TEXT_SUFFIXES:
             continue
         original = path.read_text(encoding="utf-8-sig")
-        transformed = transform_text(path.relative_to(package_root), original, server_version)
+        transformed = transform_text(path.relative_to(package_root), original)
         if transformed != original:
             path.write_text(transformed, encoding="utf-8")
             changed.append(path)

@@ -9,6 +9,7 @@ Keep the TGS Unity package and its Python server dependency on the same release 
 `MCPForUnity/package.json` will expose only its standard `version` field. During every completed integration from `upstream/main`, the TGS branch retains the upstream version value unchanged.
 
 The Editor UI, prerelease detection, and Python server pinning will all read that same field. The package will not carry `mcpServerVersion` or any other second version source.
+The TGS identity transformation must preserve the upstream `version` unchanged and must not add a server-version field.
 
 ## Boundaries
 
@@ -20,8 +21,9 @@ The Editor UI, prerelease detection, and Python server pinning will all read tha
 
 1. Remove `mcpServerVersion` from the TGS package manifest and set `version` to the current upstream release, `10.0.0`.
 2. Make the server-version lookup delegate to the package-version lookup.
-3. Add a focused Unity test proving the manifest has no separate server-version field and that its package version is `10.0.0`.
-4. Update the branch-integration design and package README with the single-version rule.
+3. Make the TGS identity transformation preserve the upstream `version` without adding a separate server version.
+4. Add focused Unity and Python tests proving the manifest and transformation have no separate server-version field.
+5. Update the branch-integration design and package README with the single-version rule.
 
 ## Validation
 
