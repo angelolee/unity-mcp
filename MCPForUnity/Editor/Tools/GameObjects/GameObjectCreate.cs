@@ -5,7 +5,6 @@ using MCPForUnity.Editor.Helpers;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace MCPForUnity.Editor.Tools.GameObjects
@@ -195,17 +194,13 @@ namespace MCPForUnity.Editor.Tools.GameObjects
             // Set Tag
             if (!string.IsNullOrEmpty(tag))
             {
-                if (tag != "Untagged" && !System.Linq.Enumerable.Contains(InternalEditorUtility.tags, tag))
+                if (tag != "Untagged" && !TagManagerUtility.TagExists(tag))
                 {
                     McpLog.Info($"[ManageGameObject.Create] Tag '{tag}' not found. Creating it.");
-                    try
-                    {
-                        InternalEditorUtility.AddTag(tag);
-                    }
-                    catch (Exception ex)
+                    if (!TagManagerUtility.EnsureTagExists(tag, out var tagError))
                     {
                         UnityEngine.Object.DestroyImmediate(newGo);
-                        return new ErrorResponse($"Failed to create tag '{tag}': {ex.Message}.");
+                        return new ErrorResponse($"Failed to create tag '{tag}': {tagError}.");
                     }
                 }
 

@@ -3,7 +3,6 @@ using MCPForUnity.Editor.Helpers;
 using MCPForUnity.Editor.Services;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
-using UnityEditorInternal; // Required for tag management
 using UnityEngine;
 
 namespace MCPForUnity.Editor.Tools
@@ -220,24 +219,17 @@ namespace MCPForUnity.Editor.Tools
             if (string.IsNullOrWhiteSpace(tagName))
                 return new ErrorResponse("Tag name cannot be empty or whitespace.");
 
-            // Check if tag already exists
-            if (System.Linq.Enumerable.Contains(InternalEditorUtility.tags, tagName))
+            if (TagManagerUtility.TagExists(tagName))
             {
                 return new ErrorResponse($"Tag '{tagName}' already exists.");
             }
 
-            try
+            if (TagManagerUtility.EnsureTagExists(tagName, out var error))
             {
-                // Add the tag using the internal utility
-                InternalEditorUtility.AddTag(tagName);
-                // Force save assets to ensure the change persists in the TagManager asset
-                AssetDatabase.SaveAssets();
                 return new SuccessResponse($"Tag '{tagName}' added successfully.");
             }
-            catch (Exception e)
-            {
-                return new ErrorResponse($"Failed to add tag '{tagName}': {e.Message}");
-            }
+
+            return new ErrorResponse($"Failed to add tag '{tagName}': {error}");
         }
 
         private static object RemoveTag(string tagName)
@@ -247,25 +239,17 @@ namespace MCPForUnity.Editor.Tools
             if (tagName.Equals("Untagged", StringComparison.OrdinalIgnoreCase))
                 return new ErrorResponse("Cannot remove the built-in 'Untagged' tag.");
 
-            // Check if tag exists before attempting removal
-            if (!System.Linq.Enumerable.Contains(InternalEditorUtility.tags, tagName))
+            if (!TagManagerUtility.TagExists(tagName))
             {
                 return new ErrorResponse($"Tag '{tagName}' does not exist.");
             }
 
-            try
+            if (TagManagerUtility.RemoveTag(tagName, out var error))
             {
-                // Remove the tag using the internal utility
-                InternalEditorUtility.RemoveTag(tagName);
-                // Force save assets
-                AssetDatabase.SaveAssets();
                 return new SuccessResponse($"Tag '{tagName}' removed successfully.");
             }
-            catch (Exception e)
-            {
-                // Catch potential issues if the tag is somehow in use or removal fails
-                return new ErrorResponse($"Failed to remove tag '{tagName}': {e.Message}");
-            }
+
+            return new ErrorResponse($"Failed to remove tag '{tagName}': {error}");
         }
 
         // --- Layer Management Methods ---
