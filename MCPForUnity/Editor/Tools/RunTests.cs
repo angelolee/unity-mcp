@@ -45,7 +45,8 @@ namespace com.tgs.mcpforunity.editor.Tools
                 bool includeFailedTests = p.GetBool("includeFailedTests");
 
                 var filterOptions = GetFilterOptions(@params);
-                string jobId = TestJobManager.StartJob(parsedMode.Value, filterOptions);
+                long initTimeoutMs = p.GetInt("initTimeout") ?? 0;
+                string jobId = TestJobManager.StartJob(parsedMode.Value, filterOptions, initTimeoutMs);
 
                 return Task.FromResult<object>(new SuccessResponse("Test job started.", new
                 {

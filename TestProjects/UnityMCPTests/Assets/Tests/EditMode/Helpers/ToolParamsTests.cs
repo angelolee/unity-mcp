@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using Newtonsoft.Json.Linq;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 
 namespace MCPForUnityTests.Editor.Helpers
 {
@@ -9,6 +9,17 @@ namespace MCPForUnityTests.Editor.Helpers
     /// </summary>
     public class ToolParamsTests
     {
+        [Test]
+        public void TagManagerUtility_ExposesSerializedTagOperations()
+        {
+            var type = System.Type.GetType("com.tgs.mcpforunity.editor.Helpers.TagManagerUtility, com.tgs.mcpforunity.editor");
+
+            Assert.NotNull(type, "Expected serialized TagManager helper to avoid UnityEditorInternal tag mutations.");
+            Assert.NotNull(type.GetMethod("TagExists", new[] { typeof(string) }));
+            Assert.NotNull(type.GetMethod("EnsureTagExists", new[] { typeof(string), typeof(string).MakeByRefType() }));
+            Assert.NotNull(type.GetMethod("RemoveTag", new[] { typeof(string), typeof(string).MakeByRefType() }));
+        }
+
         #region Constructor Tests
 
         [Test]

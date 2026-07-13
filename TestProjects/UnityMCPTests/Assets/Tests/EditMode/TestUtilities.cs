@@ -34,7 +34,7 @@ namespace MCPForUnityTests.Editor
             if (AssetDatabase.IsValidFolder(folderPath))
                 return;
 
-            var sanitized = MCPForUnity.Editor.Helpers.AssetPathUtility.SanitizeAssetPath(folderPath);
+            var sanitized = com.tgs.mcpforunity.editor.Helpers.AssetPathUtility.SanitizeAssetPath(folderPath);
             if (string.Equals(sanitized, "Assets", StringComparison.OrdinalIgnoreCase))
                 return;
 

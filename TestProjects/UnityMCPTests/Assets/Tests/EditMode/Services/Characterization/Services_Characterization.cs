@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 using NUnit.Framework;
-using MCPForUnity.Editor.Services;
+using com.tgs.mcpforunity.editor.Services;
 using UnityEditor;
 
 namespace MCPForUnityTests.Editor.Services.Characterization

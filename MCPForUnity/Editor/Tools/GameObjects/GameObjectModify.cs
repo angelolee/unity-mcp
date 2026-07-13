@@ -9,7 +9,6 @@ using UnityEditor.SceneManagement;
 #if !UNITY_2021_2_OR_NEWER
 using PrefabStageUtility = UnityEditor.Experimental.SceneManagement.PrefabStageUtility;
 #endif
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace com.tgs.mcpforunity.editor.Tools.GameObjects
@@ -115,16 +114,12 @@ namespace com.tgs.mcpforunity.editor.Tools.GameObjects
             {
                 string tagToSet = string.IsNullOrEmpty(tag) ? "Untagged" : tag;
 
-                if (tagToSet != "Untagged" && !System.Linq.Enumerable.Contains(InternalEditorUtility.tags, tagToSet))
+                if (tagToSet != "Untagged" && !TagManagerUtility.TagExists(tagToSet))
                 {
                     McpLog.Info($"[ManageGameObject] Tag '{tagToSet}' not found. Creating it.");
-                    try
+                    if (!TagManagerUtility.EnsureTagExists(tagToSet, out var tagError))
                     {
-                        InternalEditorUtility.AddTag(tagToSet);
-                    }
-                    catch (Exception ex)
-                    {
-                        return new ErrorResponse($"Failed to create tag '{tagToSet}': {ex.Message}.");
+                        return new ErrorResponse($"Failed to create tag '{tagToSet}': {tagError}.");
                     }
                 }
 

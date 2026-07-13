@@ -1,8 +1,8 @@
 using System;
 using NUnit.Framework;
 using Newtonsoft.Json.Linq;
-using MCPForUnity.Editor.Tools;
-using MCPForUnity.Editor.Tools.Prefabs;
+using com.tgs.mcpforunity.editor.Tools;
+using com.tgs.mcpforunity.editor.Tools.Prefabs;
 using UnityEditor;
 using UnityEngine;
 

@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 
 namespace MCPForUnityTests.Editor.Tools
 {
@@ -18,8 +18,8 @@ namespace MCPForUnityTests.Editor.Tools
         {
             // Arrange: Force TestJobManager into a "busy" state without starting a real run.
             // We do this via reflection because TestJobManager is internal.
-            var asm = typeof(MCPForUnity.Editor.Services.MCPServiceLocator).Assembly;
-            var testJobManagerType = asm.GetType("MCPForUnity.Editor.Services.TestJobManager");
+            var asm = typeof(com.tgs.mcpforunity.editor.Services.MCPServiceLocator).Assembly;
+            var testJobManagerType = asm.GetType("com.tgs.mcpforunity.editor.Services.TestJobManager");
             Assert.NotNull(testJobManagerType, "Could not locate TestJobManager type via reflection");
 
             var currentJobIdField = testJobManagerType.GetField("_currentJobId", BindingFlags.NonPublic | BindingFlags.Static);
@@ -30,7 +30,7 @@ namespace MCPForUnityTests.Editor.Tools
 
             try
             {
-                var resultObj = MCPForUnity.Editor.Tools.RunTests.HandleCommand(new JObject()).GetAwaiter().GetResult();
+                var resultObj = com.tgs.mcpforunity.editor.Tools.RunTests.HandleCommand(new JObject()).GetAwaiter().GetResult();
 
                 Assert.IsInstanceOf<ErrorResponse>(resultObj);
                 var err = (ErrorResponse)resultObj;
@@ -51,7 +51,7 @@ namespace MCPForUnityTests.Editor.Tools
         [Test]
         public void HandleCommand_WithInvalidMode_ReturnsError()
         {
-            var resultObj = MCPForUnity.Editor.Tools.RunTests.HandleCommand(new JObject
+            var resultObj = com.tgs.mcpforunity.editor.Tools.RunTests.HandleCommand(new JObject
             {
                 ["mode"] = "NotARealMode"
             }).GetAwaiter().GetResult();
@@ -59,7 +59,7 @@ namespace MCPForUnityTests.Editor.Tools
             Assert.IsInstanceOf<ErrorResponse>(resultObj);
             var err = (ErrorResponse)resultObj;
             Assert.AreEqual(false, err.Success);
-            Assert.IsTrue(err.Error.Contains("Unknown test mode", StringComparison.OrdinalIgnoreCase));
+            Assert.IsTrue(err.Error.IndexOf("Unknown test mode", StringComparison.OrdinalIgnoreCase) >= 0);
         }
     }
 }

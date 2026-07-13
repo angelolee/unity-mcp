@@ -1,7 +1,7 @@
 using System.IO;
 using NUnit.Framework;
-using MCPForUnity.Editor.Services.Server;
-using MCPForUnity.Editor.Constants;
+using com.tgs.mcpforunity.editor.Services.Server;
+using com.tgs.mcpforunity.editor.Constants;
 using UnityEditor;
 using UnityEngine;
 

@@ -1,10 +1,10 @@
 using System.Linq;
 using NUnit.Framework;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Services;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Services;
 using UnityEditor;
 
-namespace MCPForUnity.Editor.Tests.EditMode.Services
+namespace com.tgs.mcpforunity.editor.Tests.EditMode.Services
 {
     [TestFixture]
     public class ToolDiscoveryServiceTests

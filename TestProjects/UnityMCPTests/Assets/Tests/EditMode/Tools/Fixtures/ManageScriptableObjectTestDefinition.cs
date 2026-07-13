@@ -14,7 +14,7 @@ namespace MCPForUnityTests.Editor.Tools.Fixtures
     public class ManageScriptableObjectTestDefinition : ManageScriptableObjectTestDefinitionBase
     {
         [SerializeField] private string displayName;
-        [SerializeField] private List<Material> materials = new();
+        [SerializeField] private List<Material> materials = new List<Material>();
         [SerializeField] private ManageScriptableObjectNestedData nested;
 
         public string DisplayName => displayName;
@@ -22,6 +22,5 @@ namespace MCPForUnityTests.Editor.Tools.Fixtures
         public string NestedNote => nested.note;
     }
 }
-
 
 

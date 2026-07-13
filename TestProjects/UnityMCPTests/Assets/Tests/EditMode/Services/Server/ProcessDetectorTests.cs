@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using MCPForUnity.Editor.Services.Server;
+using com.tgs.mcpforunity.editor.Services.Server;
 
 namespace MCPForUnityTests.Editor.Services.Server
 {

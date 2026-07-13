@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using Newtonsoft.Json.Linq;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 
 namespace MCPForUnityTests.Editor.Helpers
 {

@@ -14,7 +14,7 @@ namespace com.tgs.mcpforunity.editor.Helpers
         /// <summary>
         /// Checks whether a type belongs to the built-in MCP for Unity package.
         /// Returns true when the type's namespace starts with
-        /// <paramref name="builtInNamespacePrefix"/> or its assembly is MCPForUnity.Editor.
+        /// <paramref name="builtInNamespacePrefix"/> or its assembly is com.tgs.mcpforunity.editor.
         /// </summary>
         public static bool IsBuiltInMcpType(Type type, string assemblyName, string builtInNamespacePrefix)
         {
@@ -25,7 +25,7 @@ namespace com.tgs.mcpforunity.editor.Helpers
             }
 
             if (!string.IsNullOrEmpty(assemblyName)
-                && assemblyName.Equals("MCPForUnity.Editor", StringComparison.Ordinal))
+                && assemblyName.Equals("com.tgs.mcpforunity.editor", StringComparison.Ordinal))
             {
                 return true;
             }

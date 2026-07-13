@@ -4,7 +4,7 @@ using UnityEngine.TestTools;
 using UnityEditor;
 using System.Collections;
 using System.IO;
-using MCPForUnity.Editor.Tools;
+using com.tgs.mcpforunity.editor.Tools;
 using Newtonsoft.Json.Linq;
 
 namespace MCPForUnityTests.Editor.Tools

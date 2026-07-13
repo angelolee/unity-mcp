@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 
 namespace MCPForUnityTests.Editor.Tools
 {

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEditorInternal;
 using Newtonsoft.Json.Linq;
-using MCPForUnity.Editor.Tools.GameObjects;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Tools.GameObjects;
 
 namespace MCPForUnityTests.Editor.Tools
 {
@@ -424,11 +424,11 @@ namespace MCPForUnityTests.Editor.Tools
             Assert.AreEqual(testTag, created.tag, "Tag should be auto-created and assigned");
             
             // Verify tag was actually added to the tag manager
-            Assert.That(UnityEditorInternal.InternalEditorUtility.tags, Does.Contain(testTag), 
+            Assert.IsTrue(TagManagerUtility.TagExists(testTag),
                 "Tag should exist in Unity's tag manager");
             
             // Clean up the created tag
-            try { UnityEditorInternal.InternalEditorUtility.RemoveTag(testTag); } catch { }
+            TagManagerUtility.RemoveTag(testTag, out _);
         }
 
         #endregion
@@ -488,4 +488,3 @@ namespace MCPForUnityTests.Editor.Tools
         #endregion
     }
 }
-

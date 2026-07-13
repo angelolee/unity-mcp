@@ -4,8 +4,8 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using Newtonsoft.Json.Linq;
-using MCPForUnity.Editor.Tools;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Tools;
+using com.tgs.mcpforunity.editor.Helpers;
 
 namespace MCPForUnityTests.Editor.Tools
 {

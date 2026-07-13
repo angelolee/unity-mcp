@@ -64,7 +64,7 @@ namespace com.tgs.mcpforunity.editor.Tools
 
             string targetName = p.Get("target");
             if (!BuildTargetMapping.TryResolveBuildTarget(targetName, out var target))
-                return new ErrorResponse($"Unknown target '{targetName}'.");
+                return new ErrorResponse(BuildTargetMapping.GetUnknownBuildTargetMessage(targetName));
 
             var group = BuildTargetMapping.GetTargetGroup(target);
             if (!BuildPipeline.IsBuildTargetSupported(group, target))
@@ -225,7 +225,7 @@ namespace com.tgs.mcpforunity.editor.Tools
 
             // Switch platform
             if (!BuildTargetMapping.TryResolveBuildTarget(targetName, out var target))
-                return new ErrorResponse($"Unknown target '{targetName}'.");
+                return new ErrorResponse(BuildTargetMapping.GetUnknownBuildTargetMessage(targetName));
 
             var group = BuildTargetMapping.GetTargetGroup(target);
             if (!BuildPipeline.IsBuildTargetSupported(group, target))
@@ -275,7 +275,11 @@ namespace com.tgs.mcpforunity.editor.Tools
             string value = p.Get("value");
 
             // Resolve target
+#if UNITY_2021_2_OR_NEWER
+            string err = BuildTargetMapping.TryResolveNamedBuildTarget(targetName, out var namedTarget);
+#else
             string err = BuildTargetMapping.TryResolveBuildTargetGroup(targetName, out var namedTarget);
+#endif
             if (err != null)
                 return new ErrorResponse(err);
 
@@ -448,7 +452,7 @@ namespace com.tgs.mcpforunity.editor.Tools
                 foreach (var t in targets)
                 {
                     if (!BuildTargetMapping.TryResolveBuildTarget(t, out var bt))
-                        return new ErrorResponse($"Unknown target '{t}' in batch.");
+                        return new ErrorResponse(BuildTargetMapping.GetUnknownBuildTargetMessage(t));
                     var btGroup = BuildTargetMapping.GetTargetGroup(bt);
                     if (!BuildPipeline.IsBuildTargetSupported(btGroup, bt))
                         return new ErrorResponse(

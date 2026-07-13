@@ -1,8 +1,8 @@
 using System;
 using NUnit.Framework;
 using UnityEditor;
-using MCPForUnity.Editor.Services;
-using MCPForUnity.Editor.Constants;
+using com.tgs.mcpforunity.editor.Services;
+using com.tgs.mcpforunity.editor.Constants;
 
 namespace MCPForUnityTests.Editor.Services
 {

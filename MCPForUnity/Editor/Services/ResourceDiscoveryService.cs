@@ -134,7 +134,7 @@ namespace com.tgs.mcpforunity.editor.Services
                 };
 
                 metadata.IsBuiltIn = StringCaseUtility.IsBuiltInMcpType(
-                    type, metadata.AssemblyName, "MCPForUnity.Editor.Resources");
+                    type, metadata.AssemblyName, "com.tgs.mcpforunity.editor.Resources");
 
                 return metadata;
             }

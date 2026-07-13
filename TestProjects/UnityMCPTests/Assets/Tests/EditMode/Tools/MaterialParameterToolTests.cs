@@ -1,7 +1,7 @@
 using System;
 using System.IO;
-using MCPForUnity.Editor.Tools;
-using MCPForUnity.Editor.Tools.GameObjects;
+using com.tgs.mcpforunity.editor.Tools;
+using com.tgs.mcpforunity.editor.Tools.GameObjects;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using UnityEditor;
@@ -150,7 +150,7 @@ namespace MCPForUnityTests.Editor.Tools
             var renderer = _sphere.GetComponent<MeshRenderer>();
             int beforeId = renderer.sharedMaterial != null ? renderer.sharedMaterial.GetInstanceID() : 0;
 
-            var data = MCPForUnity.Editor.Helpers.GameObjectSerializer.GetComponentData(renderer) as System.Collections.Generic.Dictionary<string, object>;
+            var data = com.tgs.mcpforunity.editor.Helpers.GameObjectSerializer.GetComponentData(renderer) as System.Collections.Generic.Dictionary<string, object>;
             Assert.IsNotNull(data, "Serializer should return data.");
 
             int afterId = renderer.sharedMaterial != null ? renderer.sharedMaterial.GetInstanceID() : 0;

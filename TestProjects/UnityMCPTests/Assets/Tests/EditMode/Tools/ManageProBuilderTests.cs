@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
-using MCPForUnity.Editor.Tools.ProBuilder;
+using com.tgs.mcpforunity.editor.Tools.ProBuilder;
 using static MCPForUnityTests.Editor.TestUtilities;
 
 namespace MCPForUnityTests.Editor.Tools
@@ -241,6 +241,7 @@ namespace MCPForUnityTests.Editor.Tools
             {
                 ["action"] = "get_mesh_info",
                 ["target"] = "PBTestInfoCube",
+                ["properties"] = new JObject { ["include"] = "faces" },
             };
             var result = ToJObject(ManageProBuilder.HandleCommand(infoParams));
             Assert.IsTrue(result.Value<bool>("success"), result.ToString());

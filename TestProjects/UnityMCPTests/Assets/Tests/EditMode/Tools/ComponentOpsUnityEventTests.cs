@@ -3,8 +3,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEditor;
 using Newtonsoft.Json.Linq;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Tools;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Tools;
 using TestNamespace;
 
 namespace MCPForUnityTests.Editor.Tools

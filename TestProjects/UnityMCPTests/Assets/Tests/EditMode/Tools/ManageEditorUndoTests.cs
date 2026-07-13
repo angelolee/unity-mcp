@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using Newtonsoft.Json.Linq;
-using MCPForUnity.Editor.Tools;
+using com.tgs.mcpforunity.editor.Tools;
 using UnityEditor;
 using UnityEngine;
 

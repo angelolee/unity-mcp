@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.Helpers;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 
@@ -81,7 +82,7 @@ namespace com.tgs.mcpforunity.editor.Tools
                     return _assemblyTypeCache;
 
                 _assemblyTypeCache = new Dictionary<string, Type[]>();
-                foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+                foreach (var asm in UnityAssembliesCompat.GetLoadedAssemblies())
                 {
                     try
                     {

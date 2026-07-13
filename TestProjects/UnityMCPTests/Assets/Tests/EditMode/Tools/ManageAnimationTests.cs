@@ -6,7 +6,7 @@ using NUnit.Framework;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
-using MCPForUnity.Editor.Tools.Animation;
+using com.tgs.mcpforunity.editor.Tools.Animation;
 using static MCPForUnityTests.Editor.TestUtilities;
 
 namespace MCPForUnityTests.Editor.Tools

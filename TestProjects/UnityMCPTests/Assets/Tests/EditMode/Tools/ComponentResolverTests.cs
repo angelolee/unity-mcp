@@ -1,7 +1,7 @@
 using System;
 using NUnit.Framework;
 using UnityEngine;
-using MCPForUnity.Editor.Tools;
+using com.tgs.mcpforunity.editor.Tools;
 
 namespace MCPForUnityTests.Editor.Tools
 {

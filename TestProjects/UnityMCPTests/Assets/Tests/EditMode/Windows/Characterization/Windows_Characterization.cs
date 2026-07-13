@@ -2,9 +2,9 @@ using System;
 using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
-using MCPForUnity.Editor.Windows;
-using MCPForUnity.Editor.Windows.Components.Connection;
-using MCPForUnity.Editor.Constants;
+using com.tgs.mcpforunity.editor.Windows;
+using com.tgs.mcpforunity.editor.Windows.Components.Connection;
+using com.tgs.mcpforunity.editor.Constants;
 using UnityEngine.UIElements;
 
 namespace MCPForUnityTests.Editor.Windows.Characterization
@@ -63,7 +63,7 @@ namespace MCPForUnityTests.Editor.Windows.Characterization
 
             // Verify the enum exists
             var type = typeof(EditorPrefsWindow);
-            var enumType = type.Assembly.GetType("MCPForUnity.Editor.Windows.EditorPrefType");
+            var enumType = type.Assembly.GetType("com.tgs.mcpforunity.editor.Windows.EditorPrefType");
             Assert.IsNotNull(enumType, "Should have EditorPrefType enum");
 
             var enumValues = Enum.GetNames(enumType);

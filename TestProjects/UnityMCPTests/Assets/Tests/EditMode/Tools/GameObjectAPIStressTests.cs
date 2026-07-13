@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Resources.Scene;
-using MCPForUnity.Editor.Tools;
-using MCPForUnity.Editor.Tools.GameObjects;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Resources.Scene;
+using com.tgs.mcpforunity.editor.Tools;
+using com.tgs.mcpforunity.editor.Tools.GameObjects;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using UnityEditor;

@@ -5,12 +5,15 @@ using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
-using MCPForUnity.Editor.Tools;
+using com.tgs.mcpforunity.editor.Tools;
 using MCPForUnityTests.Editor.Tools.Fixtures;
 using static MCPForUnityTests.Editor.TestUtilities;
 
 namespace MCPForUnityTests.Editor.Tools
 {
+#if !UNITY_2021_1_OR_NEWER
+    [Ignore("Unity 2020.3 emits native TLS allocator asserts while the test runner churns ScriptableObject assets.")]
+#endif
     public class ManageScriptableObjectTests
     {
         private const string TempRoot = "Assets/Temp/ManageScriptableObjectTests";
@@ -22,6 +25,18 @@ namespace MCPForUnityTests.Editor.Tools
         private string _createdGuid;
         private string _matAPath;
         private string _matBPath;
+
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            DeleteTestRoot();
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            DeleteTestRoot();
+        }
 
         [UnitySetUp]
         public IEnumerator SetUp()
@@ -46,7 +61,7 @@ namespace MCPForUnityTests.Editor.Tools
             AssetDatabase.CreateAsset(new Material(shader), _matAPath);
             AssetDatabase.CreateAsset(new Material(shader), _matBPath);
             AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
+            RefreshAssetDatabaseAfterFixtureChange();
             yield return WaitForUnityReady(UnityReadyTimeoutSeconds);
         }
 
@@ -75,7 +90,22 @@ namespace MCPForUnityTests.Editor.Tools
             // Clean up empty parent folders to avoid debris
             CleanupEmptyParentFolders(TempRoot);
 
+            RefreshAssetDatabaseAfterFixtureChange();
+        }
+
+        private static void DeleteTestRoot()
+        {
+            if (AssetDatabase.IsValidFolder(TempRoot))
+                AssetDatabase.DeleteAsset(TempRoot);
+            CleanupEmptyParentFolders(TempRoot);
+            RefreshAssetDatabaseAfterFixtureChange();
+        }
+
+        private static void RefreshAssetDatabaseAfterFixtureChange()
+        {
+#if UNITY_2021_1_OR_NEWER
             AssetDatabase.Refresh();
+#endif
         }
 
         [Test]
@@ -299,9 +329,7 @@ namespace MCPForUnityTests.Editor.Tools
             Assert.IsNotNull(path, "Expected path in response.");
             Assert.IsTrue(path!.StartsWith("Assets/Temp/ManageScriptableObjectTests/SlashProbe/Deep", StringComparison.Ordinal),
                 $"Expected sanitized Assets-rooted path, got: {path}");
-            Assert.IsFalse(path.Contains("//", StringComparison.Ordinal), $"Path should not contain double slashes: {path}");
+            Assert.IsFalse(path.IndexOf("//", StringComparison.Ordinal) >= 0, $"Path should not contain double slashes: {path}");
         }
     }
 }
-
-

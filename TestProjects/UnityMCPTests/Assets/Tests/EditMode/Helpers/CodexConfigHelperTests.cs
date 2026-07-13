@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 using MCPForUnity.External.Tommy;
-using MCPForUnity.Editor.Services;
+using com.tgs.mcpforunity.editor.Services;
 using System.IO;
-using MCPForUnity.Editor.Constants;
+using com.tgs.mcpforunity.editor.Constants;
 using UnityEditor;
 
 namespace MCPForUnityTests.Editor.Helpers

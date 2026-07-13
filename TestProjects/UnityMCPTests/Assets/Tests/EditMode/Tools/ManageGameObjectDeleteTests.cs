@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
-using MCPForUnity.Editor.Tools.GameObjects;
+using com.tgs.mcpforunity.editor.Tools.GameObjects;
 
 namespace MCPForUnityTests.Editor.Tools
 {

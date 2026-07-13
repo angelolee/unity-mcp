@@ -1,9 +1,15 @@
+using System;
 using UnityEditor;
+#if UNITY_2021_2_OR_NEWER
+using UnityEditor.Build;
+#endif
 
 namespace com.tgs.mcpforunity.editor.Tools.Build
 {
     public static class BuildTargetMapping
     {
+        private const string VisionOSName = "VisionOS";
+
         public static bool TryResolveBuildTarget(string name, out BuildTarget target)
         {
             if (string.IsNullOrEmpty(name))
@@ -23,13 +29,12 @@ namespace com.tgs.mcpforunity.editor.Tools.Build
                 case "webgl": target = BuildTarget.WebGL; return true;
                 case "uwp": target = BuildTarget.WSAPlayer; return true;
                 case "tvos": target = BuildTarget.tvOS; return true;
-                // BuildTarget.VisionOS exists only in Unity 2023.2+ and late 2022.3 patches
-#if UNITY_2023_2_OR_NEWER
-                case "visionos": target = BuildTarget.VisionOS; return true;
-#endif
                 default:
-                    if (System.Enum.TryParse(name, true, out target))
+                    if (TryParseDefinedBuildTarget(name, out target))
+                    {
                         return true;
+                    }
+
                     target = default;
                     return false;
             }
@@ -49,22 +54,101 @@ namespace com.tgs.mcpforunity.editor.Tools.Build
                 case BuildTarget.WebGL: return BuildTargetGroup.WebGL;
                 case BuildTarget.WSAPlayer: return BuildTargetGroup.WSA;
                 case BuildTarget.tvOS: return BuildTargetGroup.tvOS;
-#if UNITY_2023_2_OR_NEWER
-                case BuildTarget.VisionOS: return BuildTargetGroup.VisionOS;
-#endif
-                default: return BuildTargetGroup.Unknown;
+                default:
+                    if (IsVisionOSTarget(target)
+                        && Enum.TryParse(VisionOSName, true, out BuildTargetGroup visionOSGroup))
+                    {
+                        return visionOSGroup;
+                    }
+
+                    return BuildTargetGroup.Unknown;
             }
         }
 
+#if UNITY_2021_2_OR_NEWER
+        public static NamedBuildTarget GetNamedBuildTarget(BuildTarget target)
+        {
+            return NamedBuildTarget.FromBuildTargetGroup(GetTargetGroup(target));
+        }
+
+        public static string TryResolveNamedBuildTarget(string name, out NamedBuildTarget namedTarget)
+        {
+            if (!TryResolveBuildTarget(name, out var buildTarget))
+            {
+                namedTarget = default;
+                return GetUnknownBuildTargetMessage(name);
+            }
+
+            var targetGroup = GetTargetGroup(buildTarget);
+            if (targetGroup == BuildTargetGroup.Unknown)
+            {
+                namedTarget = default;
+                return IsVisionOSTarget(buildTarget)
+                    ? "VisionOS build target is available, but its BuildTargetGroup is not exposed by this Unity editor installation."
+                    : $"Build target group could not be resolved for target '{buildTarget}'.";
+            }
+
+            namedTarget = NamedBuildTarget.FromBuildTargetGroup(targetGroup);
+            return null;
+        }
+#else
         public static string TryResolveBuildTargetGroup(string name, out BuildTargetGroup targetGroup)
         {
             if (!TryResolveBuildTarget(name, out var buildTarget))
             {
                 targetGroup = BuildTargetGroup.Unknown;
-                return $"Unknown build target: '{name}'. Valid targets: windows64, osx, linux64, android, ios, webgl, uwp, tvos, visionos";
+                return GetUnknownBuildTargetMessage(name);
             }
+
             targetGroup = GetTargetGroup(buildTarget);
+            if (targetGroup == BuildTargetGroup.Unknown)
+            {
+                return IsVisionOSTarget(buildTarget)
+                    ? "VisionOS build target is available, but its BuildTargetGroup is not exposed by this Unity editor installation."
+                    : $"Build target group could not be resolved for target '{buildTarget}'.";
+            }
+
             return null;
+        }
+#endif
+
+        public static string GetUnknownBuildTargetMessage(string name)
+        {
+            if (string.Equals(name, "visionos", StringComparison.OrdinalIgnoreCase))
+            {
+                return "VisionOS build target is not available in this Unity editor installation. "
+                    + "Install the visionOS build support module or use a Unity version/configuration that exposes BuildTarget.VisionOS.";
+            }
+
+            return $"Unknown build target: '{name}'. Valid targets: {GetValidTargetsList()}.";
+        }
+
+        private static string GetValidTargetsList()
+        {
+            string validTargets = "windows64, osx, linux64, android, ios, webgl, uwp, tvos";
+            if (TryParseDefinedBuildTarget(VisionOSName, out _))
+            {
+                validTargets += ", visionos";
+            }
+
+            return validTargets;
+        }
+
+        private static bool IsVisionOSTarget(BuildTarget target)
+        {
+            return string.Equals(target.ToString(), VisionOSName, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static bool TryParseDefinedBuildTarget(string name, out BuildTarget target)
+        {
+            target = default;
+            if (int.TryParse(name, out _))
+            {
+                return false;
+            }
+
+            return Enum.TryParse(name, true, out target)
+                && Enum.IsDefined(typeof(BuildTarget), target);
         }
 
         public static string GetDefaultOutputPath(BuildTarget target, string productName)

@@ -12,7 +12,7 @@ using UnityEngine.UIElements;
 namespace com.tgs.mcpforunity.editor.Windows
 {
     /// <summary>
-    /// Editor window for managing Unity EditorPrefs, specifically for MCP For Unity development
+    /// Editor window for managing Unity EditorPrefs, specifically for MCP for Unity development
     /// </summary>
     public class EditorPrefsWindow : EditorWindow
     {
@@ -45,7 +45,7 @@ namespace com.tgs.mcpforunity.editor.Windows
             { EditorPrefKeys.ProjectScopedToolsLocalHttp, EditorPrefType.Bool },
             { EditorPrefKeys.AllowLanHttpBind, EditorPrefType.Bool },
             { EditorPrefKeys.AllowInsecureRemoteHttp, EditorPrefType.Bool },
-            
+
             // Integer prefs
             { EditorPrefKeys.UnitySocketPort, EditorPrefType.Int },
             { EditorPrefKeys.ValidationLevel, EditorPrefType.Int },
@@ -53,7 +53,7 @@ namespace com.tgs.mcpforunity.editor.Windows
             { EditorPrefKeys.LastStdIoUpgradeVersion, EditorPrefType.Int },
             { EditorPrefKeys.LastLocalHttpServerPid, EditorPrefType.Int },
             { EditorPrefKeys.LastLocalHttpServerPort, EditorPrefType.Int },
-            
+
             // String prefs
             { EditorPrefKeys.EditorWindowActivePanel, EditorPrefType.String },
             { EditorPrefKeys.ClaudeCliPathOverride, EditorPrefType.String },

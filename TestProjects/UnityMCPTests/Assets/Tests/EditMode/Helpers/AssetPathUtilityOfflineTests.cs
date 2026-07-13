@@ -1,6 +1,6 @@
 using NUnit.Framework;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Constants;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Constants;
 using UnityEditor;
 
 namespace MCPForUnityTests.Editor.Helpers

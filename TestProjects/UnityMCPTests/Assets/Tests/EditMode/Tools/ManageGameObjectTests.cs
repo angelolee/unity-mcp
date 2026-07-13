@@ -5,8 +5,8 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using Newtonsoft.Json.Linq;
-using MCPForUnity.Editor.Tools;
-using MCPForUnity.Editor.Tools.GameObjects;
+using com.tgs.mcpforunity.editor.Tools;
+using com.tgs.mcpforunity.editor.Tools.GameObjects;
 
 namespace MCPForUnityTests.Editor.Tools
 {
@@ -38,7 +38,7 @@ namespace MCPForUnityTests.Editor.Tools
 
             Assert.IsNotNull(result, "Should return a result object");
             // Verify the result indicates an error state
-            var errorResponse = result as MCPForUnity.Editor.Helpers.ErrorResponse;
+            var errorResponse = result as com.tgs.mcpforunity.editor.Helpers.ErrorResponse;
             Assert.IsNotNull(errorResponse, "Should return an ErrorResponse for null params");
             Assert.IsFalse(errorResponse.Success, "Success should be false for null params");
         }
@@ -51,7 +51,7 @@ namespace MCPForUnityTests.Editor.Tools
 
             Assert.IsNotNull(result, "Should return a result object for empty params");
             // Verify the result indicates an error state (missing required action)
-            var errorResponse = result as MCPForUnity.Editor.Helpers.ErrorResponse;
+            var errorResponse = result as com.tgs.mcpforunity.editor.Helpers.ErrorResponse;
             Assert.IsNotNull(errorResponse, "Should return an ErrorResponse for empty params");
             Assert.IsFalse(errorResponse.Success, "Success should be false for empty params");
         }
@@ -390,7 +390,7 @@ namespace MCPForUnityTests.Editor.Tools
             object result;
             try
             {
-                result = MCPForUnity.Editor.Helpers.GameObjectSerializer.GetComponentData(meshRenderer);
+                result = com.tgs.mcpforunity.editor.Helpers.GameObjectSerializer.GetComponentData(meshRenderer);
             }
             finally
             {
@@ -431,7 +431,7 @@ namespace MCPForUnityTests.Editor.Tools
             object result;
             try
             {
-                result = MCPForUnity.Editor.Helpers.GameObjectSerializer.GetComponentData(meshFilter);
+                result = com.tgs.mcpforunity.editor.Helpers.GameObjectSerializer.GetComponentData(meshFilter);
             }
             finally
             {
@@ -465,7 +465,7 @@ namespace MCPForUnityTests.Editor.Tools
             meshRenderer.sharedMaterial = testMaterial;
             
             // Act - Get component data in edit mode
-            var result = MCPForUnity.Editor.Helpers.GameObjectSerializer.GetComponentData(meshRenderer);
+            var result = com.tgs.mcpforunity.editor.Helpers.GameObjectSerializer.GetComponentData(meshRenderer);
             
             // Assert - Verify that the material property was accessed without instantiation
             Assert.IsNotNull(result, "GetComponentData should return a result");
@@ -499,7 +499,7 @@ namespace MCPForUnityTests.Editor.Tools
             meshFilter.sharedMesh = testMesh;
             
             // Act - Get component data in edit mode
-            var result = MCPForUnity.Editor.Helpers.GameObjectSerializer.GetComponentData(meshFilter);
+            var result = com.tgs.mcpforunity.editor.Helpers.GameObjectSerializer.GetComponentData(meshFilter);
             
             // Assert - Verify that the mesh property was accessed without instantiation
             Assert.IsNotNull(result, "GetComponentData should return a result");
@@ -528,8 +528,8 @@ namespace MCPForUnityTests.Editor.Tools
             // Don't set any materials or meshes - they should be null
             
             // Act - Get component data
-            var rendererResult = MCPForUnity.Editor.Helpers.GameObjectSerializer.GetComponentData(meshRenderer);
-            var meshFilterResult = MCPForUnity.Editor.Helpers.GameObjectSerializer.GetComponentData(meshFilter);
+            var rendererResult = com.tgs.mcpforunity.editor.Helpers.GameObjectSerializer.GetComponentData(meshRenderer);
+            var meshFilterResult = com.tgs.mcpforunity.editor.Helpers.GameObjectSerializer.GetComponentData(meshFilter);
             
             // Assert - Verify that the operations succeeded even with null materials/meshes
             Assert.IsNotNull(rendererResult, "GetComponentData should handle null materials");
@@ -555,7 +555,7 @@ namespace MCPForUnityTests.Editor.Tools
             meshRenderer.sharedMaterials = new Material[] { material1, material2 };
             
             // Act - Get component data
-            var result = MCPForUnity.Editor.Helpers.GameObjectSerializer.GetComponentData(meshRenderer);
+            var result = com.tgs.mcpforunity.editor.Helpers.GameObjectSerializer.GetComponentData(meshRenderer);
             
             // Assert - Verify that the operation succeeded with multiple materials
             Assert.IsNotNull(result, "GetComponentData should handle multiple materials");
@@ -583,7 +583,7 @@ namespace MCPForUnityTests.Editor.Tools
 
             // Assert - Should return an error with guidance to use correct tools
             Assert.IsNotNull(result, "Should return a result");
-            var errorResponse = result as MCPForUnity.Editor.Helpers.ErrorResponse;
+            var errorResponse = result as com.tgs.mcpforunity.editor.Helpers.ErrorResponse;
             Assert.IsNotNull(errorResponse, "Should return an ErrorResponse");
             Assert.IsFalse(errorResponse.Success, "Should indicate failure");
             Assert.That(errorResponse.Error, Does.Contain("prefab asset"), "Error should mention prefab asset");
@@ -606,7 +606,7 @@ namespace MCPForUnityTests.Editor.Tools
 
             // Assert - Should return an error with guidance
             Assert.IsNotNull(result, "Should return a result");
-            var errorResponse = result as MCPForUnity.Editor.Helpers.ErrorResponse;
+            var errorResponse = result as com.tgs.mcpforunity.editor.Helpers.ErrorResponse;
             Assert.IsNotNull(errorResponse, "Should return an ErrorResponse");
             Assert.IsFalse(errorResponse.Success, "Should indicate failure");
             Assert.That(errorResponse.Error, Does.Contain("prefab asset"), "Error should mention prefab asset");
@@ -630,7 +630,7 @@ namespace MCPForUnityTests.Editor.Tools
 
             // Assert - Should NOT return the prefab redirection error
             // (It may fail for other reasons like prefab not found, but not due to redirection)
-            var errorResponse = result as MCPForUnity.Editor.Helpers.ErrorResponse;
+            var errorResponse = result as com.tgs.mcpforunity.editor.Helpers.ErrorResponse;
             if (errorResponse != null)
             {
                 // If there's an error, it should NOT be the prefab asset guidance error

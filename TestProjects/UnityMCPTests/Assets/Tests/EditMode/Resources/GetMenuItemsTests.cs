@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using Newtonsoft.Json.Linq;
-using MCPForUnity.Editor.Resources.MenuItems;
+using com.tgs.mcpforunity.editor.Resources.MenuItems;
 using System;
 using System.Linq;
 

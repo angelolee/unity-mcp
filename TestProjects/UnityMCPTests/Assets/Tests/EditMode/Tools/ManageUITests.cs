@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UIElements;
-using MCPForUnity.Editor.Tools;
+using com.tgs.mcpforunity.editor.Tools;
 using static MCPForUnityTests.Editor.TestUtilities;
 
 namespace MCPForUnityTests.Editor.Tools
@@ -274,6 +274,7 @@ namespace MCPForUnityTests.Editor.Tools
         }
 
         // ---- Create PanelSettings ----
+#if UNITY_2021_1_OR_NEWER
 
         [Test]
         public void CreatePanelSettings_CreatesAsset()
@@ -376,6 +377,7 @@ namespace MCPForUnityTests.Editor.Tools
             Assert.IsFalse(result.Value<bool>("success"));
         }
 
+#endif
         // ---- Get Visual Tree ----
 
         [Test]
@@ -524,6 +526,7 @@ namespace MCPForUnityTests.Editor.Tools
         }
 
         // ---- Detach UIDocument ----
+#if UNITY_2021_1_OR_NEWER
 
         [Test]
         public void DetachUIDocument_RemovesComponent()
@@ -595,6 +598,7 @@ namespace MCPForUnityTests.Editor.Tools
             Assert.IsFalse(result.Value<bool>("success"));
         }
 
+#endif
         // ---- Modify visual element ----
 
         [Test]
@@ -809,14 +813,25 @@ namespace MCPForUnityTests.Editor.Tools
             // USS is CSS-like, not XML — validation should be skipped
             string content = "This is not valid XML <broken>";
 
-            var result = ToJObject(ManageUI.HandleCommand(new JObject
+            // Unity 6000.4+'s USS importer logs an error on this content; the test only
+            // verifies that ManageUI itself doesn't pre-validate .uss as UXML, not the
+            // downstream importer's behavior.
+            LogAssert.ignoreFailingMessages = true;
+            try
             {
-                ["action"] = "create",
-                ["path"] = path,
-                ["contents"] = content,
-            }));
+                var result = ToJObject(ManageUI.HandleCommand(new JObject
+                {
+                    ["action"] = "create",
+                    ["path"] = path,
+                    ["contents"] = content,
+                }));
 
-            Assert.IsTrue(result.Value<bool>("success"), result.ToString());
+                Assert.IsTrue(result.Value<bool>("success"), result.ToString());
+            }
+            finally
+            {
+                LogAssert.ignoreFailingMessages = false;
+            }
         }
 
         // ---- Path traversal validation ----

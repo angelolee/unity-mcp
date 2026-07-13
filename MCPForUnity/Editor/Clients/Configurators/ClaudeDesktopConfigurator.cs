@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using com.tgs.mcpforunity.editor.Constants;
 using com.tgs.mcpforunity.editor.Models;
-using com.tgs.mcpforunity.editor.Services;
 using UnityEditor;
 
 namespace com.tgs.mcpforunity.editor.Clients.Configurators
@@ -39,27 +37,7 @@ namespace com.tgs.mcpforunity.editor.Clients.Configurators
             "Save and restart Claude Desktop"
         };
 
-        public override void Configure()
-        {
-            bool useHttp = EditorConfigurationCache.Instance.UseHttpTransport;
-            if (useHttp)
-            {
-                throw new InvalidOperationException("Claude Desktop does not support HTTP transport. Switch to stdio in settings before configuring.");
-            }
-
-            base.Configure();
-        }
-
-        public override string GetManualSnippet()
-        {
-            bool useHttp = EditorConfigurationCache.Instance.UseHttpTransport;
-            if (useHttp)
-            {
-                return "# Claude Desktop does not support HTTP transport.\n" +
-                       "# In Connect tab, change the Transport option from HTTP to stdio, then regenerate.";
-            }
-
-            return base.GetManualSnippet();
-        }
+        private static readonly ConfiguredTransport[] StdioOnly = { ConfiguredTransport.Stdio };
+        public override IReadOnlyList<ConfiguredTransport> SupportedTransports => StdioOnly;
     }
 }

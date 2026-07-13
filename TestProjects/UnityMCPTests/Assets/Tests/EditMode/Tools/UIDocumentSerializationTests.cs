@@ -1,10 +1,11 @@
+#if UNITY_2021_1_OR_NEWER
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
-using MCPForUnity.Editor.Helpers;
+using com.tgs.mcpforunity.editor.Helpers;
 
 namespace MCPForUnityTests.Editor.Tools
 {
@@ -245,3 +246,4 @@ namespace MCPForUnityTests.Editor.Tools
         }
     }
 }
+#endif

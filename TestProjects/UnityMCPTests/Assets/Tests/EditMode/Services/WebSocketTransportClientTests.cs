@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using MCPForUnity.Editor.Services.Transport.Transports;
+using com.tgs.mcpforunity.editor.Services.Transport.Transports;
 using NUnit.Framework;
 
 namespace MCPForUnityTests.Editor.Services
@@ -12,7 +12,7 @@ namespace MCPForUnityTests.Editor.Services
     public class WebSocketTransportClientTests
     {
         private const string CandidateBuilderMethodName = "BuildConnectionCandidateUris";
-        private const string WebSocketTransportClientTypeName = "MCPForUnity.Editor.Services.Transport.Transports.WebSocketTransportClient";
+        private const string WebSocketTransportClientTypeName = "com.tgs.mcpforunity.editor.Services.Transport.Transports.WebSocketTransportClient";
         private static readonly MethodInfo BuildConnectionCandidateUrisMethod = ResolveCandidateBuilderMethod();
 
         [Test]

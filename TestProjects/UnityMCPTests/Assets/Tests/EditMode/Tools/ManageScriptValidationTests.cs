@@ -4,7 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
-using MCPForUnity.Editor.Tools;
+using com.tgs.mcpforunity.editor.Tools;
 using System.Reflection;
 
 namespace MCPForUnityTests.Editor.Tools

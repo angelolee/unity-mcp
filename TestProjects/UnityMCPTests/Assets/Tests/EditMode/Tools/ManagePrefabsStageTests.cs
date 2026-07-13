@@ -1,5 +1,6 @@
+#if UNITY_2021_2_OR_NEWER
 using System.IO;
-using MCPForUnity.Editor.Tools.Prefabs;
+using com.tgs.mcpforunity.editor.Tools.Prefabs;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using UnityEditor;
@@ -249,3 +250,4 @@ namespace MCPForUnityTests.Editor.Tools
         }
     }
 }
+#endif

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using UnityEditor;
-using MCPForUnity.Editor.Helpers;
-using MCPForUnity.Editor.Models;
-using MCPForUnity.Editor.Constants;
-using MCPForUnity.Editor.Services;
-using EditorConfigCache = MCPForUnity.Editor.Services.EditorConfigurationCache;
+using com.tgs.mcpforunity.editor.Helpers;
+using com.tgs.mcpforunity.editor.Models;
+using com.tgs.mcpforunity.editor.Constants;
+using com.tgs.mcpforunity.editor.Services;
+using EditorConfigCache = com.tgs.mcpforunity.editor.Services.EditorConfigurationCache;
 
 namespace MCPForUnityTests.Editor.Helpers
 {
