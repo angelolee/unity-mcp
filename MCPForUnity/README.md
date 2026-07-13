@@ -13,6 +13,14 @@ This is an adapted version of the CoplayDev 'MCP for Unity' plugin, ported to Un
 
 ---
 
+## TGS distribution policy
+
+This package is the downstream TGS distribution. It does not query or advertise updates from Coplay's GitHub repository or Asset Store,
+because its package version is independent of upstream releases. Bring updates in through the `features/unity-2020-3` →
+`features/tgs-unity-2020-3` merge flow in this repository.
+
+---
+
 ## MCP Client Configuration
 - Select Client: Choose your target MCP client (e.g., Cursor, VS Code, Windsurf, Claude Code).
 - Per-client actions:

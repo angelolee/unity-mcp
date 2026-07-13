@@ -51,6 +51,12 @@ namespace MCPForUnityTests.Editor.Services
         }
 
         [Test]
+        public void TgsDistribution_DisablesUpstreamPackageUpdateChecks()
+        {
+            Assert.IsFalse(ProductInfo.EnableUpstreamPackageUpdateChecks);
+        }
+
+        [Test]
         public void IsNewerVersion_ReturnsTrue_WhenMajorVersionIsNewer()
         {
             bool result = _service.IsNewerVersion("2.0.0", "1.0.0");

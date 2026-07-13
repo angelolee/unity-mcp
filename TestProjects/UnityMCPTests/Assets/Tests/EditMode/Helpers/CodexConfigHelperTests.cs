@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using com.tgs.mcpforunity.editor.Helpers;
-using MCPForUnity.External.Tommy;
+using com.tgs.mcpforunity.External.Tommy;
 using com.tgs.mcpforunity.editor.Services;
 using System.IO;
 using com.tgs.mcpforunity.editor.Constants;

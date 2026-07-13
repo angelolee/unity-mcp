@@ -38,7 +38,7 @@ namespace com.tgs.mcpforunity.editor.Resources.Project
                         textmeshpro = IsPackageInstalled("com.unity.textmeshpro"),
                         inputsystem = IsPackageInstalled("com.unity.inputsystem"),
                         uiToolkit = true,
-                        screenCapture = com.tgs.mcpforunity.Helpers.ScreenshotUtility.IsScreenCaptureModuleAvailable,
+                        screenCapture = true,
                     }
                 };
 

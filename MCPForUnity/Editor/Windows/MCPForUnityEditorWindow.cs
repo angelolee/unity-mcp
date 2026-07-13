@@ -415,6 +415,12 @@ namespace com.tgs.mcpforunity.editor.Windows
 
         private void QueueUpdateCheck()
         {
+            if (!ProductInfo.EnableUpstreamPackageUpdateChecks)
+            {
+                updateNotification?.RemoveFromClassList("visible");
+                return;
+            }
+
             if (updateCheckQueued || updateCheckInFlight)
             {
                 return;

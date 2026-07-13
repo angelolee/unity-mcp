@@ -5,5 +5,8 @@ namespace com.tgs.mcpforunity.editor.Constants
     {
         public const string ProductName = "MCP for Unity";
         public const string MenuRoot = "Window/MCP for Unity";
+
+        // TGS releases are synchronized through this repository, not Coplay's public release channels.
+        public static bool EnableUpstreamPackageUpdateChecks => false;
     }
 }

@@ -69,6 +69,7 @@ The TGS branch must preserve these downstream deltas:
 - TGS assembly names;
 - independent package version plus `mcpServerVersion`;
 - `required` and repository metadata;
+- no automatic upstream package-update checks or UI notifications; synchronize through the documented branch merge flow instead;
 - TGS-specific runtime, editor, or CI behavior;
 - TGS README, changelog, and license presentation.
 
