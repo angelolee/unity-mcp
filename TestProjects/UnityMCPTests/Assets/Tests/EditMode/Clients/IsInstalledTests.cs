@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using com.tgs.mcpforunity.editor.Clients;
 using com.tgs.mcpforunity.editor.Clients.Configurators;
@@ -40,6 +41,26 @@ namespace MCPForUnityTests.Editor.Clients
             string parent = Path.GetDirectoryName(claude.GetConfigPath());
             bool expected = parent != null && Directory.Exists(parent);
             Assert.AreEqual(expected, claude.IsInstalled);
+        }
+
+        [Test]
+        public void ClaudeDesktopConfigPath_PrefersMsixVirtualizedConfig()
+        {
+            string root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+            string appData = Path.Combine(root, "Roaming");
+            string localAppData = Path.Combine(root, "Local");
+            string packageRoot = Path.Combine(localAppData, "Packages", "Claude_pzs8sxrjxfjjc");
+            string expected = Path.Combine(packageRoot, "LocalCache", "Roaming", "Claude", "claude_desktop_config.json");
+
+            Directory.CreateDirectory(packageRoot);
+            try
+            {
+                Assert.AreEqual(expected, ClaudeDesktopConfigurator.ResolveWindowsConfigPath(appData, localAppData));
+            }
+            finally
+            {
+                Directory.Delete(root, true);
+            }
         }
     }
 }

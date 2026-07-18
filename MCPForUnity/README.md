@@ -58,6 +58,10 @@ Notes:
 ---
 
 ## Troubleshooting
+- Claude Desktop on Windows does not load the MCP configuration:
+    - Standard installs use `%APPDATA%\\Claude\\claude_desktop_config.json`.
+    - MSIX installs use `%LOCALAPPDATA%\\Packages\\Claude_*\\LocalCache\\Roaming\\Claude\\claude_desktop_config.json`.
+    - Set the uv/uvx override to an existing `uvx.exe` in Advanced Settings, then configure Claude Desktop again.
 - Python or `uv` not found:
     - Help: [Fix MCP for Unity with Cursor, VS Code & Windsurf](https://github.com/CoplayDev/unity-mcp/wiki/1.-Fix-Unity-MCP-and-Cursor,-VSCode-&-Windsurf)
 - Claude CLI not found:

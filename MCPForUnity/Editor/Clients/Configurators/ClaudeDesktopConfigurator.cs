@@ -13,7 +13,9 @@ namespace com.tgs.mcpforunity.editor.Clients.Configurators
         public ClaudeDesktopConfigurator() : base(new McpClient
         {
             name = ClientName,
-            windowsConfigPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Claude", "claude_desktop_config.json"),
+            windowsConfigPath = ResolveWindowsConfigPath(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)),
             macConfigPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Library", "Application Support", "Claude", "claude_desktop_config.json"),
             linuxConfigPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".config", "Claude", "claude_desktop_config.json"),
             SupportsHttpTransport = false,
@@ -39,5 +41,32 @@ namespace com.tgs.mcpforunity.editor.Clients.Configurators
 
         private static readonly ConfiguredTransport[] StdioOnly = { ConfiguredTransport.Stdio };
         public override IReadOnlyList<ConfiguredTransport> SupportedTransports => StdioOnly;
+
+        internal static string ResolveWindowsConfigPath(string appDataPath, string localAppDataPath)
+        {
+            string standardPath = Path.Combine(appDataPath, "Claude", "claude_desktop_config.json");
+            if (string.IsNullOrEmpty(localAppDataPath))
+                return standardPath;
+
+            try
+            {
+                string packagesDirectory = Path.Combine(localAppDataPath, "Packages");
+                if (!Directory.Exists(packagesDirectory))
+                    return standardPath;
+
+                foreach (string packageDirectory in Directory.EnumerateDirectories(packagesDirectory))
+                {
+                    string packageName = Path.GetFileName(packageDirectory);
+                    if (!packageName.StartsWith("Claude_", StringComparison.OrdinalIgnoreCase) &&
+                        !packageName.StartsWith("Anthropic.ClaudeDesktop_", StringComparison.OrdinalIgnoreCase))
+                        continue;
+
+                    return Path.Combine(packageDirectory, "LocalCache", "Roaming", "Claude", "claude_desktop_config.json");
+                }
+            }
+            catch { }
+
+            return standardPath;
+        }
     }
 }

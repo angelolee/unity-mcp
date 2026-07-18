@@ -66,10 +66,7 @@ namespace com.tgs.mcpforunity.editor.Services
         {
             try
             {
-                // Try uvx first, then uv
-                string[] commandNames = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-                    ? new[] { "uvx.exe", "uv.exe" }
-                    : new[] { "uvx", "uv" };
+                string[] commandNames = GetUvxCommandNamesForPlatform(RuntimeInformation.IsOSPlatform(OSPlatform.Windows));
 
                 foreach (string commandName in commandNames)
                 {
@@ -88,6 +85,11 @@ namespace com.tgs.mcpforunity.editor.Services
             }
 
             return null;
+        }
+
+        internal static string[] GetUvxCommandNamesForPlatform(bool isWindows)
+        {
+            return isWindows ? new[] { "uvx.exe" } : new[] { "uvx" };
         }
 
 
